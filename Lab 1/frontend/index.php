@@ -1,3 +1,7 @@
+<?php
+    include('./load_data.php');
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,10 +34,17 @@
 				  </thead>
 				  <tbody>
 				    <tr>
-				      <th scope="row">Spooky Island</th>
-				      <td>2017</td>
-				      <td>Terror</td>
-				      <td>8</td>
+                        <?php
+                            for($movie in $movies):                            
+                        ?>
+                        <th scope="row">Spooky Island</th>
+                          <td>2017</td>
+                          <td>Terror</td>
+                          <td>8</td>
+                        <?php
+                            endfor;
+                        ?>
+				      
 				    </tr>
 				  </tbody>
 				</table>

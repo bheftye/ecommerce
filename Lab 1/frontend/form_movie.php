@@ -30,7 +30,14 @@
   <div class="form-group">
     <label for="genre">Select Genre</label>
     <select class="form-control" id="genre" name="genre">
-      <option>Terror</option>      
+      <?php
+        for($genre in $genres):
+      ?>
+        <option value="<?=$genre['id']?>"><?=$genre['name']?></option>  
+      <?php
+        endfor;
+      ?>
+          
     </select>
   </div>
   <div class="form-group">

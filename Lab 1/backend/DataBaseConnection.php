@@ -13,6 +13,7 @@ class DataBaseConnection {
 
 	public function executeQuery($query){
 
+		return $this->getConnection()->query($query);
 	}
 
 	public function getConnection(){
