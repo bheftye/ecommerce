@@ -1,5 +1,5 @@
 <?php
-	include('./db_connection.php');
+	include('DataBaseConnection.php');
 
 	$action = $_GET['action'];
 	if (!empty($action)){
@@ -12,9 +12,11 @@
 					'rating' => $_POST['rating']
 				];
 
+				storeMovie($params);
+				redirect('./../index.php');
 				break;
 			default:
-				redirect('./../index.php')
+				redirect('./../index.php');
 				break;
 		}
 	}
@@ -27,8 +29,10 @@
 	   die();
 	}
 
-	function storeMovie($movieInfo)
+	function storeMovie($params)
 	{
-
+		$sql = "INSERT INTO movies (name, year, genre, rating) VALUES (".$params['name'].", ".$params['year'].", ".$params['genre'].", ".$params['rating']." );";
+		$dbConnection = new DataBaseConnection();
+		$dbConnection->executeQuery($sql);
 	}
 ?>
