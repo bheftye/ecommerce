@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `genre`
 --
 
-CREATE TABLE `genre` (
+CREATE TABLE `genres` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,7 +46,7 @@ CREATE TABLE `movies` (
 --
 -- Indices de la tabla `genre`
 --
-ALTER TABLE `genre`
+ALTER TABLE `genres`
   ADD PRIMARY KEY (`id`);
 
 --

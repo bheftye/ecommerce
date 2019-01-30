@@ -31,11 +31,13 @@
     <label for="genre">Select Genre</label>
     <select class="form-control" id="genre" name="genre">
       <?php
-        for($genre in $genres):
+        foreach($genres as $genre):
       ?>
-        <option value="<?=$genre['id']?>"><?=$genre['name']?></option>  
+        <option value="<?=$genre->id?>">
+          <?=$genre->name?>
+        </option>  
       <?php
-        endfor;
+        endforeach;
       ?>
           
     </select>

@@ -35,14 +35,14 @@
 				  <tbody>
 				    <tr>
                         <?php
-                            for($movie in $movies):                            
+                            foreach($movies as $movie):                            
                         ?>
-                        <th scope="row">Spooky Island</th>
-                          <td>2017</td>
-                          <td>Terror</td>
-                          <td>8</td>
+                        <th scope="row"><?=$movie->name?></th>
+                          <td><?=$movie->year?></td>
+                          <td><?=$movie->genre->name?></td>
+                          <td><?=$movie->rating?></td>
                         <?php
-                            endfor;
+                            endforeach;
                         ?>
 				      
 				    </tr>

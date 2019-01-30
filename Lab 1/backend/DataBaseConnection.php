@@ -1,32 +1,36 @@
 <?php 
 
-class DataBaseConnection {	
+class DataBaseConnection
+{	
 	private $config = [
+		'host' => 'localhost',
 		'database' => 'movie_time',
 		'user' => 'root',
 		'password' => 'root'
 	];
 
-	_construct(){
-		 
-	}
-
 	public function executeQuery($query){
+		$connection = $this->getConnection();
+		if (!empty($connection)){
+			return $connection->query($query);
+		}
 
-		return $this->getConnection()->query($query);
+		return null;
 	}
 
 	public function getConnection(){
 		$connection = new mysqli(
-			'localhost',
-			$this->config['database'],
+			$this->config['host'],
 			$this->config['user'],
-			$this->config['password']
+			$this->config['password'],
+			$this->config['database'],
+			3306
 		);
 
-		if () {
-
-		}
+		if ($connection->connect_error) {
+		    echo "Connection failed: " . $connection->connect_error;
+		    return null;
+		} 
 
 		return $connection;
 	}
