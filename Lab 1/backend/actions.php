@@ -13,10 +13,10 @@
 				];
 
 				storeMovie($params);
-				redirect('./../index.php');
+				redirect('./../frontend/index.php');
 				break;
 			default:
-				redirect('./../index.php');
+				redirect('./../frontend/index.php');
 				break;
 		}
 	}
@@ -31,7 +31,7 @@
 
 	function storeMovie($params)
 	{
-		$sql = "INSERT INTO movies (name, year, genre, rating) VALUES (".$params['name'].", ".$params['year'].", ".$params['genre'].", ".$params['rating']." );";
+		$sql = "INSERT INTO movies (name, year, genre, rating) VALUES ('".$params['name']."', '".$params['year']."', ".$params['genre'].", ".$params['rating']." );";
 		$dbConnection = new DataBaseConnection();
 		$dbConnection->executeQuery($sql);
 	}

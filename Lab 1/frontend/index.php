@@ -33,19 +33,18 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-                        <?php
-                            foreach($movies as $movie):                            
-                        ?>
-                        <th scope="row"><?=$movie->name?></th>
-                          <td><?=$movie->year?></td>
-                          <td><?=$movie->genre->name?></td>
-                          <td><?=$movie->rating?></td>
-                        <?php
-                            endforeach;
-                        ?>
-				      
-				    </tr>
+                    <?php
+                    foreach($movies as $movie):                            
+                    ?>
+                        <tr>
+                            <th scope="row"><?=$movie->name?></th>
+                            <td><?=$movie->year?></td>
+                            <td><?=$movie->genre->name?></td>
+                            <td><?=$movie->rating?></td>
+				        </tr>
+                    <?php
+                    endforeach;
+                    ?>
 				  </tbody>
 				</table>
     		</div>

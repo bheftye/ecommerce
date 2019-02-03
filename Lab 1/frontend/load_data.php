@@ -28,6 +28,4 @@
 		}
 	}
 
-	echo sizeof($genres);
-
 ?>
