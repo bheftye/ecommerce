@@ -5,11 +5,42 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+#hcont{
+
+  h1{
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  small{
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+
+
+#search-form {
+  .input-group{
+    input {
+      height: 45px;
+      font-size: 30px;
+      border-radius: 25px;
+      padding-left:30px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius:0;
+    }
+
+    div span{
+      border-top-right-radius: 25px;
+      border-bottom-right-radius:25px;
+    }
+  }
 }
 

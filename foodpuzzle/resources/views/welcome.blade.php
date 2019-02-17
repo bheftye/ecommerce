@@ -8,13 +8,14 @@ $placeHolder = "Search your favourite recipes";
 
 @section('content')
 <div class="row">
-    <div class="col-12 pt-5">
-        <form id="search-form" method="POST" action="/search">
-            @csrf
-            <div class="form-group">
-                <input class="form-control" id="search" name="query" placeholder="{{$placeHolder}}"/>
-            </div>
-        </form>
+    <div class="col-12 pt-2" id="hcont">
+        <div class="row justify-content-center">
+            <h1>FoodPuzzle</h1>
+        </div>
+        <div class="row justify-content-center">
+            <small>Let's make dinner</small>
+        </div>
     </div>
+    @include('welcome.form')
 </div>
 @endsection
