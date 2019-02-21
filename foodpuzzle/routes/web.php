@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('recipe')->group(function () {
+    Route::get('create', function () {
+        return view('recipe.create');
+    });
+});
