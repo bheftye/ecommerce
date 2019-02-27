@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 
 Route::get('/login', function () {
-    return view('login');
+    return view('user.login-form');
 });
 
 Route::get('/register', function () {
