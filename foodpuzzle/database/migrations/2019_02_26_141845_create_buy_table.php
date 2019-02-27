@@ -17,16 +17,6 @@ class CreateBuyTable extends Migration
             $table->unsignedInteger('f_id');
             $table->unsignedInteger('st_id');
         });
-
-
-        Schema::table('buy', function($table) {
-            //$table->unsignedInteger('f_id');
-            //$table->unsignedInteger('st_id');
-
-
-            $table->foreign('f_id')->references('id')->on('food');
-            $table->foreign('st_id')->references('id')->on('stores');
-        });
     }
 
     /**
