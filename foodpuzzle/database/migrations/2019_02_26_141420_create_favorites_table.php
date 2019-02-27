@@ -14,8 +14,18 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->integer('u_id');
-            $table->integer('r_id');
+
+            $table->unsignedInteger('u_id');
+            $table->unsignedInteger('r_id');
+        });
+
+        
+        Schema::table('favorites', function($table) {
+            //$table->unsignedInteger('u_id');
+            //$table->unsignedInteger('r_id');
+
+            $table->foreign('u_id')->references('id')->on('users');
+            $table->foreign('r_id')->references('id')->on('recipes');
         });
     }
 
