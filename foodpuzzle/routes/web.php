@@ -31,3 +31,11 @@ Route::get('/create', function () {
 Route::get('/captcha', function () {
     return view('user.captcha');
 });
+
+Route::prefix('recipe')->group(function () {
+    Route::get('create', function () {
+        return view('recipe.create');
+    });
+
+    Route::post('create', 'Recipe/RecipeController@create');
+});
