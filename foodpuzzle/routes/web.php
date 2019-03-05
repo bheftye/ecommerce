@@ -15,8 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('recipe')->group(function () {
-    Route::get('create', function () {
-        return view('recipe.create');
-    });
+
+Route::get('/login', function () {
+    return view('user.login-form');
+});
+
+Route::get('/register', function () {
+    return view('user.register');
+});
+
+Route::get('/create', function () {
+    return view('recipe.create');
+});
+
+Route::get('/captcha', function () {
+    return view('user.captcha');
 });
