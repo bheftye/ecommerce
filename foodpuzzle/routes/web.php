@@ -31,3 +31,7 @@ Route::get('/create', function () {
 Route::get('/captcha', function () {
     return view('user.captcha');
 });
+
+Route::get('/search-result', function () {
+    return view('recipe.searchresultpage');
+});

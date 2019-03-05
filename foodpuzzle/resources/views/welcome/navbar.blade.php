@@ -12,13 +12,14 @@
       <li class="nav-item">
         <a class="nav-link" href="/register">SignUp</a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="/create">Create</a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link disabled" href="">Favorite</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/search-result">Result</a>
       </li>
     </ul>
 
