@@ -4,14 +4,14 @@
             @csrf
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control" type="text" name="name" placeholder="Recipe's name"/>
+                    <input class="form-control" type="text" name="name" placeholder="Recipe's name" required/>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01" required>
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <div class="input-group">
-                    <textarea class="form-control" name="steps" placeholder="Recipe's steps"></textarea>
+                    <textarea class="form-control" name="steps" placeholder="Recipe's steps" required></textarea>
                 </div>
             </div>
 

@@ -37,5 +37,12 @@ Route::prefix('recipe')->group(function () {
         return view('recipe.create');
     });
 
+    Route::get('{id}', function ($id){
+        $recipe = \App\Recipe::findOrFail(['uuid' => $id]);
+        return view('recipe.view')->with(['recipe' => $recipe]);
+    });
+
     Route::post('create', 'Recipe/RecipeController@create');
+
+
 });
