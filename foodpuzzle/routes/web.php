@@ -42,7 +42,7 @@ Route::prefix('recipe')->group(function () {
         return view('recipe.view')->with(['recipe' => $recipe]);
     });
 
-    Route::post('create', 'Recipe/RecipeController@create');
+    Route::post('create', 'Recipe\RecipeController@create');
 
 
 });

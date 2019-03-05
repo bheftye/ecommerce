@@ -9,9 +9,10 @@
 namespace App\Http\Controllers\Recipe;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Webpatser\Uuid\Uuid;
 
@@ -30,14 +31,17 @@ class RecipeController extends Controller
         }
         //file upload
         try{
-            $filePath = $request->file('file')->store('app/recipes');
-            $recipe = new User($params);
+            $filePath = $request->file('file')->store('recipes');
+            $recipe = new Recipe($params);
             $recipe->uuid = Uuid::generate();
             $recipe->img_file = $filePath;
             $recipe->u_id = 1;
+            $recipe->vegan = $request->has('vegan')? true:false;
             $recipe->save();
         } catch (\Exception $exception){
             Log::error($exception);
+            if(isset($filePath))
+                Storage::delete($filePath);
             return redirect('recipe/create')->withInput();
         }
 
@@ -58,10 +62,10 @@ class RecipeController extends Controller
             'calories' => ['numeric'],
             'fat' => ['numeric'],
             'carbohydrate' => ['numeric'],
-            'protein' => ['double'],
-            'sugar' => ['double'],
-            'vegan' => ['double'],
-            'file' => ['required','file','mimes:jpeg,png,jpg', 'size:1000']
+            'protein' => ['numeric'],
+            'sugar' => ['numeric'],
+            'vegan' => ['numeric'],
+            'file' => ['required','image', 'max:1000']
 
         ]);
     }
