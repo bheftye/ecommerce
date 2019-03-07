@@ -17,5 +17,6 @@ $placeHolder = "Search your favourite recipes";
         </div>
     </div>
     @include('welcome.form')
+    @include('recipe.recipes', ['recipes' => $recipes])
 </div>
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Recipe;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $recipes = Recipe::all();
+    return view('welcome')->with(['recipes' => $recipes]);
 });
 
 
@@ -30,4 +32,26 @@ Route::get('/create', function () {
 
 Route::get('/captcha', function () {
     return view('user.captcha');
+});
+
+Route::prefix('recipe')->group(function () {
+    Route::get('create', function () {
+        return view('recipe.create');
+    });
+
+    Route::get('{id}', function ($id){
+        $recipe = \App\Recipe::findOrFail(['uuid' => $id]);
+        return view('recipe.view')->with(['recipe' => $recipe]);
+    });
+
+    Route::post('create', 'Recipe\RecipeController@create');
+
+
+});
+
+Route::prefix('recipes')->group(function (){
+   Route::get('{id}', function ($id){
+
+     return response()->file($id);
+   });
 });
