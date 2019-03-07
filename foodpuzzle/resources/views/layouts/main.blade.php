@@ -15,7 +15,7 @@
 <body>
 	@include('welcome.navbar')
 	@include('menu.menu')
-	<div class="container">
+	<div class="container-fluid" style="margin-top:70px">
 		@yield('content')
 	</div>
 	<!-- Optional JavaScript -->

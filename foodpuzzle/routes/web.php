@@ -34,6 +34,10 @@ Route::get('/captcha', function () {
     return view('user.captcha');
 });
 
+Route::get('/search-result', function () {
+    return view('recipe.searchresultpage');
+});
+
 Route::prefix('recipe')->group(function () {
     Route::get('create', function () {
         return view('recipe.create');
@@ -45,13 +49,4 @@ Route::prefix('recipe')->group(function () {
     });
 
     Route::post('create', 'Recipe\RecipeController@create');
-
-
-});
-
-Route::prefix('recipes')->group(function (){
-   Route::get('{id}', function ($id){
-
-     return response()->file($id);
-   });
 });
