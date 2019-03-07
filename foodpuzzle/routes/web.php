@@ -40,7 +40,7 @@ Route::prefix('recipe')->group(function () {
     });
 
     Route::get('{id}', function ($id){
-        $recipe = \App\Recipe::findOrFail(['uuid' => $id]);
+        $recipe = Recipe::findOrFail(['uuid' => $id]);
         return view('recipe.view')->with(['recipe' => $recipe]);
     });
 
