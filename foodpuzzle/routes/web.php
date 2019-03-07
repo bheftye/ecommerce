@@ -1,5 +1,6 @@
 <?php
 
+use App\Recipe;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $recipes = Recipe::all();
+    return view('welcome')->with(['recipes' => $recipes]);
 });
 
 
@@ -45,4 +47,11 @@ Route::prefix('recipe')->group(function () {
     Route::post('create', 'Recipe\RecipeController@create');
 
 
+});
+
+Route::prefix('recipes')->group(function (){
+   Route::get('{id}', function ($id){
+
+     return response()->file($id);
+   });
 });

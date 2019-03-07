@@ -31,7 +31,7 @@ class RecipeController extends Controller
         }
         //file upload
         try{
-            $filePath = $request->file('file')->store('recipes');
+            $filePath = $request->file('file')->store('public');
             $recipe = new Recipe($params);
             $recipe->uuid = Uuid::generate();
             $recipe->img_file = $filePath;
@@ -66,7 +66,6 @@ class RecipeController extends Controller
             'sugar' => ['numeric'],
             'vegan' => ['numeric'],
             'file' => ['required','image', 'max:1000']
-
         ]);
     }
 
