@@ -18,13 +18,17 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', function () {
-    return view('user.login-form');
+Route::get('/mylogin', function () {
+    return view('auth.login');
 });
 
-Route::get('/register', function () {
-    return view('user.register');
+Route::post('/lookup', 'Controller@login');
+
+Route::get('/myregister', function () {
+    return view('auth.register');
 });
+
+Route::post('/insert', 'Controller@insert');
 
 Route::get('/create', function () {
     return view('recipe.create');
@@ -50,3 +54,7 @@ Route::prefix('recipe')->group(function () {
 
     Route::post('create', 'Recipe\RecipeController@create');
 });
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
