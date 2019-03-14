@@ -38,7 +38,11 @@ Route::get('/search-result', function () {
     return view('recipe.searchresultpage');
 });
 
+
 Route::prefix('recipe')->group(function () {
+
+    Route::get('favorite/{uuid}', 'Recipe\RecipeController@favorite');
+
     Route::get('create', function () {
         return view('recipe.create');
     });

@@ -11,6 +11,9 @@ $fileName = $filePathInParts[1];
             <p class="card-text">
                 {{$recipe->rname}}
             </p>
+            <a href="recipe/favorite/{{$recipe->uuid}}">
+                <i class="fa fa-heart"></i>
+            </a>
         </div>
     </div>
 </div>

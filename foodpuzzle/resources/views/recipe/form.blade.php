@@ -103,6 +103,11 @@
                         Is this recipe vegan?
                     </label>
                 </div>
+                @if ($errors->has('vegan'))
+                    <small class="alert-danger">
+                        {{$errors->first('vegan')}}
+                    </small>
+                @endif
             </div>
         </div>
         <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>

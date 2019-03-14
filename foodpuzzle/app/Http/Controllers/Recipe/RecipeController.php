@@ -8,17 +8,39 @@
 
 namespace App\Http\Controllers\Recipe;
 
+use App\Favorite;
 use App\Http\Controllers\Controller;
 use App\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Uuid\Uuid;
 
 class RecipeController extends Controller
 {
-
+    /**
+     * @param $uuid
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function favorite($uuid){
+        $recipe = Recipe::where(['uuid' => $uuid])->first();
+        Log::error(json_encode($recipe));
+        if (!empty($recipe)){
+            $favorite = new Favorite();
+            $favorite->r_id = $recipe->id;
+            $favorite->u_id = 1;
+            if($favorite->save()){
+                return redirect('/');
+            } else {
+                Log::error($favorite->errors);
+                return redirect('/');
+            }
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
     /**
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
