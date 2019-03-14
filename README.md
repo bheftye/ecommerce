@@ -3,9 +3,9 @@ E-commerce class
 
 ## Resources
 If you need to check resources:
-[FontAwesome](https://fontawesome.com/icons?d=gallery)
-[Bootstrap 4](https://getbootstrap.com)
-[Laravel 5.7](https://laravel.com/docs/5.7)
+* [FontAwesome](https://fontawesome.com/icons?d=gallery)
+* [Bootstrap 4](https://getbootstrap.com)
+* [Laravel 5.7](https://laravel.com/docs/5.7)
 
 ## Execute migrations
 In order to update your database with the most updated code just execute the next command in your project root.
