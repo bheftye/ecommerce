@@ -2,7 +2,6 @@
 
 @section('title', "Register")
 
-
 @section('content')
     <div class="row">
         <div class="col-12 pt-2" id="hcont">
@@ -11,7 +10,7 @@
             </div>
             <div class="row justify-content-center">
             <small>Let's become friends</small>
-        </div>
+            </div>
         </div>
         @include('user.register-form')
     </div>

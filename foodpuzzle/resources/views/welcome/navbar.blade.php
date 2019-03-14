@@ -2,10 +2,10 @@
   <a class="navbar-brand" href="/">FoodPuzzle</a>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="/login">LogIn</a>
+      <a class="nav-link" href="/mylogin">LogIn</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/register">SignUp</a>
+      <a class="nav-link" href="/myregister">SignUp</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/create">Create</a>
