@@ -1,6 +1,9 @@
 # ecommerce
 E-commerce class
 
+## Resources
+[FontAwesome Icons](https://fontawesome.com/icons?d=gallery)
+
 
 ## Execute migrations
 In order to update your database with the most updated code just execute the next command in your project root.
