@@ -47,5 +47,13 @@ class Favorite extends Model
     {
         return $this->belongsTo('App\User', 'u_id');
     }
-
+    /**
+     * @param $r_id
+     * @param $u_id
+     * @return bool true or false
+     */
+    public static function isFavorite ($r_id, $u_id){
+        $favorite = self::where(['r_id' => $r_id, 'u_id' => $u_id])->first();
+        return !empty($favorite);
+    }
 }
