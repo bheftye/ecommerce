@@ -5,7 +5,9 @@
                 @include('recipe.preview', ['recipe' => $recipe])
             @endforeach
         @else
-            <p>No recipes found.</p>
+            <div class="col-md-12">
+                <p>No recipes found.</p>
+            </div>
         @endif
     </div>
 </div>
