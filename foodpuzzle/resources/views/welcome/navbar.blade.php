@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
   <!-- Left Side Of Navbar -->
+  <!-- this part need to be fixed, user need to verify their email before using. -->
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
