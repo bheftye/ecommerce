@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
 <br>
 <div class="container">
     <div class="row justify-content-center">
@@ -61,6 +62,27 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+                        <!-- captcha -->
+                        <div class="form-group row">
+                            <div class="col-md-4 col-form-label text-md-right">
+                                <img src="{{captcha_src()}}" onclick="this.src='/captcha/default?'+new Date().getTime()" id="captchaCode" alt="captcha" class="captcha">
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="captcha" id="captcha" class="form-control{{ $errors->has('captcha') ? ' is-invalid' : '' }}" name="captcha" required>
+                                @if ($errors->has('captcha'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('captcha') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-4 col-form-label text-md-right">
+                                <small>Click the picture to refresh</small>
+                            </div>
+                        </div>
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
