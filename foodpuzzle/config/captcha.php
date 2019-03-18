@@ -1,45 +1,33 @@
-<?php
+<?php if (!class_exists('CaptchaConfiguration')) { return; }
+
+// BotDetect PHP Captcha configuration options
 
 return [
-
-    'characters' => '2346789abcdefghjmnpqrtuxyzABCDEFGHJMNPQRTUXYZ',
-
-    'default'   => [
-        'length'    => 5,
-        'width'     => 120,
-        'height'    => 36,
-        'quality'   => 90,
+  // Captcha configuration for login page
+  'LoginCaptcha' => [
+    'UserInputID' => 'CaptchaCode',
+    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(4, 6),
+    'ImageStyle' => [
+      ImageStyle::Radar,
+      ImageStyle::Collage,
+      ImageStyle::Fingerprints,
     ],
+  ],
 
-    'flat'   => [
-        'length'    => 6,
-        'width'     => 160,
-        'height'    => 46,
-        'quality'   => 90,
-        'lines'     => 6,
-        'bgImage'   => false,
-        'bgColor'   => '#ecf2f4',
-        'fontColors'=> ['#2c3e50', '#c0392b', '#16a085', '#c0392b', '#8e44ad', '#303f9f', '#f57c00', '#795548'],
-        'contrast'  => -5,
-    ],
+  // Captcha configuration for register page
+  'RegisterCaptcha' => [
+    'UserInputID' => 'CaptchaCode',
+    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(4, 6),
+    'CodeStyle' => CodeStyle::Alpha,
+    'ImageWidth' => 200, 
+    'ImageHeight' => 50, 
+  ],
 
-    'mini'   => [
-        'length'    => 3,
-        'width'     => 60,
-        'height'    => 32,
-    ],
-
-    'inverse'   => [
-        'length'    => 5,
-        'width'     => 120,
-        'height'    => 36,
-        'quality'   => 90,
-        'sensitive' => true,
-        'angle'     => 12,
-        'sharpen'   => 10,
-        'blur'      => 2,
-        'invert'    => true,
-        'contrast'  => -5,
-    ]
+  // Captcha configuration for reset password page
+  'ResetPasswordCaptcha' => [
+    'UserInputID' => 'CaptchaCode',
+    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(3, 6),
+    'CustomLightColor' => '#9966FF',
+  ],
 
 ];

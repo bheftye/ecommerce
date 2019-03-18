@@ -66,21 +66,19 @@
                         <!-- captcha -->
                         <div class="form-group row">
                             <div class="col-md-4 col-form-label text-md-right">
-                                <img src="{{captcha_src()}}" onclick="this.src='/captcha/default?'+new Date().getTime()" id="captchaCode" alt="captcha" class="captcha">
+                                {!! captcha_image_html('RegisterCaptcha') !!}
                             </div>
 
                             <div class="col-md-6">
-                                <input type="captcha" id="captcha" class="form-control{{ $errors->has('captcha') ? ' is-invalid' : '' }}" name="captcha" required>
-                                @if ($errors->has('captcha'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('captcha') }}</strong>
+                                <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode" required>
+
+                                @if ($errors->has('CaptchaCode'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('CaptchaCode') }}</strong>
                                     </span>
                                 @endif
                             </div>
 
-                            <div class="col-md-4 col-form-label text-md-right">
-                                <small>Click the picture to refresh</small>
-                            </div>
                         </div>
                         
 
