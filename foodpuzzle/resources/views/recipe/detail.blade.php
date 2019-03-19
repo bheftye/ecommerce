@@ -65,7 +65,8 @@ if (Auth::check()){
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-md-8 offset-md-2 mt-5">
+                    <h5>Steps:</h5>
                     <p>
                         {{$recipe->steps}}
                     </p>
