@@ -57,9 +57,13 @@ Route::prefix('recipe')->group(function () {
         return view('recipe.create');
     });
 
-    Route::get('{id}', function ($id){
-        $recipe = Recipe::findOrFail(['uuid' => $id]);
-        return view('recipe.view')->with(['recipe' => $recipe]);
+    Route::get('{uuid}', function ($uuid){
+        $recipe = Recipe::where(['uuid' => $uuid])->first();
+        if (!empty($recipe)){
+            return view('recipe.detail')->with(['recipe' => $recipe]);
+        } else {
+            return redirect()->back();
+        }
     });
 
     Route::post('create', 'Recipe\RecipeController@create');

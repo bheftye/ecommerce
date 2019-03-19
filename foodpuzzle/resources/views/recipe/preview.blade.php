@@ -19,10 +19,10 @@ if (Auth::check()){
     <div class="card" style="width:100%">
         <img src="{{asset('storage/' . $fileName)}}" class="card-img-top" alt="food-image">
         <div class="card-body">
-            <p class="card-text">
-                {{$recipe->rname}}
-            </p>
-            <a href="recipe/favorite/{{$recipe->uuid}}" >
+            <a href="recipe/{{$recipe->uuid}}" class="link">
+                <p class="card-text">{{$recipe->rname}}</p>
+            </a>
+            <a href="recipe/favorite/{{$recipe->uuid}}" class="heart">
                 <i style="color:red" class="{{$isFavorite? "fas fa-heart" : "far fa-heart"}}"></i>
             </a>
         </div>
@@ -30,10 +30,10 @@ if (Auth::check()){
 </div>
 
 <style>
-    .card-text {
+    .card-body a.link{
         float: left;
     }
-    .card-body a {
+    .card-body a.heart {
         color: grey; 
         float: right;
     }
