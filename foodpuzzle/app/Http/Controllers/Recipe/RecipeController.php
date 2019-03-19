@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Uuid\Uuid;
+use DB;
 
 class RecipeController extends Controller
 {
@@ -28,15 +29,26 @@ class RecipeController extends Controller
         $recipe = Recipe::where(['uuid' => $uuid])->first();
         Log::error(json_encode($recipe));
         if (!empty($recipe)){
-            $favorite = new Favorite();
-            $favorite->r_id = $recipe->id;
-            $favorite->u_id = 1;
-            if($favorite->save()){
-                return redirect('/');
-            } else {
-                Log::error($favorite->errors);
+            
+            $result = DB::table('favorites')->where(['u_id'=> 1,'r_id' => $recipe->id]);
+            $result1 = $result->get();
+            
+            if(!$result1->isEmpty()) { //delete favourite
+                $result->delete();
                 return redirect('/');
             }
+            else { //prepare to be favourite
+                $favorite = new Favorite();
+                $favorite->r_id = $recipe->id;
+                $favorite->u_id = 1;
+                if($favorite->save()){
+                    return redirect('/');
+                } else {
+                    Log::error($favorite->errors);
+                    return redirect('/');
+                }
+            }    
+            
         } else {
             throw new NotFoundHttpException();
         }

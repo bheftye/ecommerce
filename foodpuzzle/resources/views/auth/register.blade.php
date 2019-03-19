@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
 <br>
 <div class="container">
     <div class="row justify-content-center">
@@ -61,6 +62,25 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+                        <!-- captcha -->
+                        <div class="form-group row">
+                            <div class="col-md-4 col-form-label text-md-right">
+                                {!! captcha_image_html('RegisterCaptcha') !!}
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode" required>
+
+                                @if ($errors->has('CaptchaCode'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                        </div>
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

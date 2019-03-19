@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- include the BotDetect layout stylesheet -->
+   <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
