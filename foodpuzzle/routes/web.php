@@ -1,6 +1,7 @@
 <?php
 
 use App\Recipe;
+use \Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,11 @@ Route::get('/search-result', function () {
 
 
 Route::prefix('recipe')->group(function () {
+
+    Route::get('favorites', function (){
+        $recipes = Auth::user()->favorites;
+        return view('recipe.favorites')->with(['recipes' => $recipes]);
+    });
 
     Route::get('favorite/{uuid}', 'Recipe\RecipeController@favorite');
 

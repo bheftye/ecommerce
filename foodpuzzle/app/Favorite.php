@@ -47,6 +47,7 @@ class Favorite extends Model
     {
         return $this->belongsTo('App\User', 'u_id');
     }
+
     /**
      * @param $r_id
      * @param $u_id

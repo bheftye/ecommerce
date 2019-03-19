@@ -1,9 +1,19 @@
 @php
+
+use \Illuminate\Support\Facades\Auth;
+use App\Favorite;
+
 /*Process file name*/
 $filePath = $recipe->img_file;
 $filePathInParts = explode('/', $filePath);
 $fileName = $filePathInParts[1];
-$isFavorite = \App\Favorite::isFavorite($recipe->id, 1);
+
+/* Check if the current recipe is favorite from logged in user. */
+$isFavorite = false;
+if (Auth::check()){
+    $user = Auth::user();
+    $isFavorite = Favorite::isFavorite($recipe->id, $user->id);
+}
 @endphp
 <div class="col-12 col-md-4">
     <div class="card" style="width:100%">
@@ -13,9 +23,8 @@ $isFavorite = \App\Favorite::isFavorite($recipe->id, 1);
                 {{$recipe->rname}}
             </p>
             <a href="recipe/favorite/{{$recipe->uuid}}" >
-            <i style="color:red" class="{{$isFavorite? "fas fa-heart" : "far fa-heart"}}"></i>
+                <i style="color:red" class="{{$isFavorite? "fas fa-heart" : "far fa-heart"}}"></i>
             </a>
-            
         </div>
     </div>
 </div>
