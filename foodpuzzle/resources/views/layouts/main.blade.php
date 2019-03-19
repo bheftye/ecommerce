@@ -13,11 +13,21 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 	<title>FoodPuzzle - @yield('title')</title>
+
+	<style type="text/css">
+		body{
+			background-image: url("/image/background.png"); 
+			background-repeat: no-repeat;
+  			background-attachment: fixed;
+  			background-position: center; 
+		}
+	</style>
+
 </head>
 <body>
 	@include('welcome.navbar')
 	@include('menu.menu')
-	<div class="container-fluid" style="margin-top:70px">
+	<div class="container-fluid" style="margin-top:50px">
 		@yield('content')
 	</div>
 	<!-- Optional JavaScript -->
