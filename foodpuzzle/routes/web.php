@@ -42,6 +42,10 @@ Route::get('/search-result', function () {
     return view('recipe.searchresultpage');
 });
 
+Route::get('/favorite', function () {
+    $recipes = Auth::user()->favorites;
+    return view('favorite.favorite')->with(['recipes' => $recipes]);
+});
 
 Route::prefix('recipe')->group(function () {
 
@@ -64,3 +68,5 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::auth();
+
+

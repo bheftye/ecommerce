@@ -1,9 +1,17 @@
 @php
+use \Illuminate\Support\Facades\Auth;
+use App\Favorite;
+
 /*Process file name*/
 $filePath = $recipe->img_file;
 $filePathInParts = explode('/', $filePath);
 $fileName = $filePathInParts[1];
-$isFavorite = \App\Favorite::isFavorite($recipe->id, 1);
+
+$isFavorite = false;
+if (Auth::check()){
+    $user = Auth::user();
+    $isFavorite = Favorite::isFavorite($recipe->id, $user->id);
+}
 @endphp
 <div class="col-12 col-md-4">
     <div class="card" style="width:100%">

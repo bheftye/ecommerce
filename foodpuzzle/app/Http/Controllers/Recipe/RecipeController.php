@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use \Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Uuid\Uuid;
 use DB;
@@ -28,9 +29,14 @@ class RecipeController extends Controller
     public function favorite($uuid){
         $recipe = Recipe::where(['uuid' => $uuid])->first();
         Log::error(json_encode($recipe));
+//        $userId=1;
+        if (Auth::check()){
+            $user = Auth::user();
+            $userId = $user->id;
+        }
         if (!empty($recipe)){
             
-            $result = DB::table('favorites')->where(['u_id'=> 1,'r_id' => $recipe->id]);
+            $result = DB::table('favorites')->where(['u_id'=> $userId,'r_id' => $recipe->id]);
             $result1 = $result->get();
             
             if(!$result1->isEmpty()) { //delete favourite
@@ -40,7 +46,7 @@ class RecipeController extends Controller
             else { //prepare to be favourite
                 $favorite = new Favorite();
                 $favorite->r_id = $recipe->id;
-                $favorite->u_id = 1;
+                $favorite->u_id = $userId;
                 if($favorite->save()){
                     return redirect('/');
                 } else {

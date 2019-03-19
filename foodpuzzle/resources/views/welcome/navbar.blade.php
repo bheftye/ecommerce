@@ -9,6 +9,9 @@
       <li class="nav-item">
           <a class="nav-link" href="/search-result">Result</a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/favorite">Favorites</a>
+      </li>
     </ul>
   </div>
   <!-- Middle Of Navbar -->
@@ -54,3 +57,4 @@
     </ul>
   </div>
 </nav>
+
