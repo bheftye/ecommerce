@@ -3,7 +3,7 @@
 @section('title', "Create a recipe!")
 
 @section('content')
-    <div class="row">
+    <div class="row" style="background-color:rgba(182, 184, 173, 0.5);">
         <div class="col-12 pt-2" id="hcont">
             <div class="row justify-content-center">
                 <h1>FoodPuzzle</h1>
