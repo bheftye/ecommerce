@@ -10,7 +10,7 @@
           <a class="nav-link" href="/search-result">Result</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="/favorite">Favorites</a>
+          <a class="nav-link" href="/recipe/favorites">Favorites</a>
       </li>
     </ul>
   </div>

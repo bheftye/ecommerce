@@ -1,4 +1,4 @@
-<div class="col-12 pt-5">
+<div class="col-12 pt-5 mb-5">
     <form id="recipe-form" class="row" method="POST" enctype="multipart/form-data" action="/recipe/create">
         <div class="col-8 offset-2">
             @csrf
@@ -28,21 +28,29 @@
                     </small>
                 @endif
             </div>
-
             <div class="form-group">
                 Recipe's ingredients:
-                <div class="input-group">
-                    <div class="col-7">
-                        <input class="form-control" type="text" name="" value="{{ old('') }}" placeholder="ingredient name" required/>
-                    </div>
-                    <div class="col-4">
-                        <input class="form-control" type="text" name="" value="{{ old('') }}" placeholder="quantity" required/>
+                <div class="row">
+                    <div class="col-11" id="add_item">
+                        <div class="input-group">
+                            <div class="row">
+                                <div class="col-5">
+                                    <input class="form-control" type="text" name="ingredient[]" value="{{ old('') }}" placeholder="ingredient name in english" required/>
+                                </div>
+                                <div class="col-5">
+                                    <input class="form-control" type="text" name="ingredientS[]" value="{{ old('') }}" placeholder="ingredient name in swedish" required/>
+                                </div>
+                                <div class="col-2">
+                                    <input class="form-control" type="text" name="quantity[]" value="{{ old('') }}" placeholder="quantity" required/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-1">
                         <button class='btn btn-success btn-block' onclick="Add_ingredients()"> + </button>
                     </div>
                 </div>
-                <div id="add_item"></div>
+
             </div>
             
             <div class="form-group">
@@ -130,8 +138,7 @@
                     </small>
                 @endif
             </div>
-
-            <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Save my recipe!</button>
         </div>
         
     </form>
@@ -140,7 +147,20 @@
 <script type="text/javascript">
     function Add_ingredients() {
         var content = document.createElement("div");
-        content.innerHTML = "<div class='input-group'><div class='col-7'><input class='form-control' type='text' name='' value='{{ old('') }}' placeholder='ingredient name' required/></div><div class='col-4'><input class='form-control' type='text' name='' value='{{ old('') }}'' placeholder='quantity' required/></div><div class='col-1'></div></div>";
+        content.innerHTML =
+            "<div class='input-group'>"+
+                "<div class='row'>"+
+                    "<div class='col-5'>"+
+                        "<input class='form-control' type='text' name='ingredient[]' value='{{ old('') }}' placeholder='ingredient name in english' required/>"+
+                    "</div>"+
+                    "<div class='col-5'>"+
+                        "<input class='form-control' type='text' name='ingredientS[]' value='{{ old('') }}' placeholder='ingredient name in swedish' required/>"+
+                    "</div>"+
+                    "<div class='col-2'>"+
+                        "<input class='form-control' type='text' name='quantity[]' value='{{ old('') }}'' placeholder='quantity' required/>"+
+                    "</div>"+
+                "</div>"+
+            "<div class='col-1'></div></div>";
 
         var temp = document.getElementById("add_item");
         temp.appendChild(content);
