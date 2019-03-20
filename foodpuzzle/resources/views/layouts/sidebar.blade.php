@@ -5,7 +5,7 @@
 
   <form class="form-signin" style="margin-top:40px">
     <br>
-    <h6 class="row justify-content-center font-weight-normal">WELCOME</h6><br>
+    <h6 class="row justify-content-center font-weight-normal" style="color: white;">WELCOME</h6><br>
 
     <input type="number" id="inputEmail" class="form-control" placeholder="Protein" required autofocus><br>
     <input type="number" id="inputPassword" class="form-control" placeholder="Fat" required>

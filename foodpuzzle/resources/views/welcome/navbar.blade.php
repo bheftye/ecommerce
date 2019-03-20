@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"  style="height:50px;">
   <!-- Left Side Of Navbar -->
   <!-- this part need to be fixed, user need to verify their email before using. -->
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
@@ -8,6 +8,9 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" href="/search-result">Result</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/favorite">Favorites</a>
       </li>
     </ul>
   </div>
@@ -54,3 +57,4 @@
     </ul>
   </div>
 </nav>
+

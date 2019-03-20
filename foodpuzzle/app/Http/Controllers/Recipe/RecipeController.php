@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Uuid\Uuid;
-use DB;
 
 class RecipeController extends Controller
 {

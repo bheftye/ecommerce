@@ -40,3 +40,4 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Recipe', 'favorites', 'u_id', 'r_id');
     }
 }
+

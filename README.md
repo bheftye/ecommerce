@@ -12,6 +12,11 @@ In order to update your database with the most updated code just execute the nex
 
 `php artisan migrate`
 
+## Execute seeder for dummy users.
+In order to fill your database with dummy users just execute the next command in your project root.
+
+`php artisan db:seed`
+
 ## Access public images from Recipe
 In order to see images from the recipes we have to execute the following command in your project root.
 
