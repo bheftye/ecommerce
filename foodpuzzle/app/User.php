@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -32,7 +33,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Recipe', 'u_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function favorites () {
-        return $this->hasMany('App\Favorite', 'u_id');
+        return $this->belongsToMany('App\Recipe', 'favorites', 'u_id', 'r_id');
     }
 }

@@ -12,6 +12,7 @@ use App\Favorite;
 use App\Http\Controllers\Controller;
 use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -27,20 +28,16 @@ class RecipeController extends Controller
      */
     public function favorite($uuid){
         $recipe = Recipe::where(['uuid' => $uuid])->first();
-        Log::error(json_encode($recipe));
         if (!empty($recipe)){
-            
-            $result = DB::table('favorites')->where(['u_id'=> 1,'r_id' => $recipe->id]);
-            $result1 = $result->get();
-            
-            if(!$result1->isEmpty()) { //delete favourite
-                $result->delete();
+            $favorite = Favorite::where(['r_id' => $recipe->id, 'u_id' => Auth::user()->id])->first();
+            if(!empty($favorite)) { //delete favourite
+                $favorite->delete();
                 return redirect('/');
             }
             else { //prepare to be favourite
                 $favorite = new Favorite();
                 $favorite->r_id = $recipe->id;
-                $favorite->u_id = 1;
+                $favorite->u_id = Auth::user()->id;
                 if($favorite->save()){
                     return redirect('/');
                 } else {
@@ -69,7 +66,7 @@ class RecipeController extends Controller
             $recipe = new Recipe($params);
             $recipe->uuid = Uuid::generate();
             $recipe->img_file = $filePath;
-            $recipe->u_id = 1;
+            $recipe->u_id = Auth::user()->id;
             $recipe->vegan = $request->has('vegan')? true:false;
             $recipe->save();
         } catch (\Exception $exception){
