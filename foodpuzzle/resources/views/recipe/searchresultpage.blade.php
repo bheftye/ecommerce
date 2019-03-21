@@ -9,6 +9,6 @@
 	</div>
 	<div class="col-10 mt-2">
 		@include('layouts.recipebox', ['recipes' => $recipes])
-	</div>	
+	</div>
 </div>
 @endsection

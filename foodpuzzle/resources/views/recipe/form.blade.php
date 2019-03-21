@@ -1,7 +1,7 @@
 <style>
     #recipe-form .note-editor.note-frame{width:100%;}
 </style>
-<div class="col-12 pt-5 mb-5">
+<div class="col-12 pt-5 mb-5" style="background-color: rgb(245, 245, 240,0.7)">
     <form id="recipe-form" class="row" method="POST" enctype="multipart/form-data" action="/recipe/create">
         <div class="col-8 offset-2">
             @csrf
