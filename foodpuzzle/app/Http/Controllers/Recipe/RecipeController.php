@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,7 @@ class RecipeController extends Controller
         if (!empty($recipe)){
             $favorite = Favorite::where(['r_id' => $recipe->id, 'u_id' => Auth::user()->id])->first();
             if(!empty($favorite)) { //delete favourite
-                $favorite->delete();
+                DB::table('favorites')->where(['u_id' => Auth::user()->id, 'r_id' => $recipe->id])->delete();
                 return redirect('/');
             }
             else { //prepare to be favourite

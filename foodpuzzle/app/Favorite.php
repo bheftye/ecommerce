@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-
     /**
      * The attributes that should be hidden for arrays.
      *
