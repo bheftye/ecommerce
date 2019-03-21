@@ -16,7 +16,10 @@ class SearchRecipeController extends Controller
     {
     	$query = $req->input('query');
 
-    	$recipes = DB::table('recipes')->where('rname','LIKE','%' . $query . '%')->get();
+    	$recipes = DB::table('recipes')
+        ->where('rname','LIKE','%' . $query . '%')
+        ->orWhere('steps','LIKE','%' . $query . '%')
+        ->get();
 
     	return view('recipe.searchresultpage', ['recipes' => $recipes]);
     }
