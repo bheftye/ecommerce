@@ -96,7 +96,6 @@ class RecipeController extends Controller
             'carbohydrate' => ['numeric'],
             'protein' => ['numeric'],
             'sugar' => ['numeric'],
-            'vegan' => ['numeric'],
             'file' => ['required','image', 'max:1000']
         ]);
     }
