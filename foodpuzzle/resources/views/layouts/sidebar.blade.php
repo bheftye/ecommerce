@@ -1,7 +1,4 @@
-<nav
-    class="nav justify-content-center"
-    style="position:fixed; height:100vh; overflow: auto;"
->
+<nav class="nav justify-content-center" style="position:relative; height:100vh; overflow: auto;">
 
   <form class="form-signin" style="margin-top:40px">
     <br>
