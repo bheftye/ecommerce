@@ -26,23 +26,24 @@ class RecipeController extends Controller
      * @param $uuid
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function favorite($uuid){
+    public function favorite(Request $request, $uuid){
         $recipe = Recipe::where(['uuid' => $uuid])->first();
         if (!empty($recipe)){
             $favorite = Favorite::where(['r_id' => $recipe->id, 'u_id' => Auth::user()->id])->first();
             if(!empty($favorite)) { //delete favourite
                 DB::table('favorites')->where(['u_id' => Auth::user()->id, 'r_id' => $recipe->id])->delete();
-                return redirect('/');
+
+                return redirect()->back();
             }
             else { //prepare to be favourite
                 $favorite = new Favorite();
                 $favorite->r_id = $recipe->id;
                 $favorite->u_id = Auth::user()->id;
                 if($favorite->save()){
-                    return redirect('/');
+                    return redirect()->back();
                 } else {
                     Log::error($favorite->errors);
-                    return redirect('/');
+                    return redirect()->back();
                 }
             }    
             
