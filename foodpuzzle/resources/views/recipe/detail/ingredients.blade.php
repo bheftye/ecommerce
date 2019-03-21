@@ -1,4 +1,5 @@
 <div class="col-12">
+    <h5><u>Ingredients</u></h5>
     <table class="table table-striped mt-2">
         <thead>
         <tr>

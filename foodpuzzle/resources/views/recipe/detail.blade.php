@@ -30,12 +30,13 @@ if (Auth::check()){
     p.author{font-size: 16px;font-style: italic;}
     .table thead th{border:hidden;}
     .table td, .table th {padding:.60rem !important;}
+    .table thead th {border-bottom:hidden !important;}
 </style>
 
 @section('content')
     <div class="row">
         <div class="container">
-            <div class="col-12 mt-5">
+            <div class="col-12 mt-5 mb-5">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <img class="detail" src="{{asset('storage/'.$fileName)}}" alt="recipe" />
@@ -50,23 +51,31 @@ if (Auth::check()){
                                 <p class="author">By <b>{{$recipe->user->name}}</b></p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="row">
+                            @include('recipe.detail.ingredients', ['recipe' => $recipe])
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="row">
                             @include('recipe.detail.properties', ['recipe' => $recipe])
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    @include('recipe.detail.ingredients', ['recipe' => $recipe])
-                </div>
-                <div class="row">
                     <div class="col-12 mt-5">
-                        <h5>Steps:</h5>
+                        <h5><u>Steps</u></h5>
                         <div>
                             {!!htmlspecialchars_decode($recipe->steps) !!}
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    
+                </div>
             </div>
         </div>
     </div>

@@ -12,8 +12,7 @@ class Recipe extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid', 'u_id', 'rname', 'steps', 'img_file', 'calories', 'fat', 'carbohydrate', 'protein', 'sugar', 'vegan'
-
+        'uuid', 'u_id', 'rname', 'steps', 'img_file', 'calories', 'fat', 'carbohydrate', 'protein', 'sugar', 'vegan', 'link'
     ];
 
     /**

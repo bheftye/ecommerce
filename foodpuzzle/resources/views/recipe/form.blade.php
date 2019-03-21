@@ -1,7 +1,7 @@
 <style>
     #recipe-form .note-editor.note-frame{width:100%;}
 </style>
-<div class="col-12 pt-5 mb-5" style="background-color: rgb(245, 245, 240,0.7)">
+<div class="col-12 pt-5 pb-5" style="background-color: rgb(245, 245, 240,0.7)">
     <form id="recipe-form" class="row" method="POST" enctype="multipart/form-data" action="/recipe/create">
         <div class="col-10">
             @csrf
@@ -31,6 +31,7 @@
                     </small>
                 @endif
             </div>
+
             <div class="form-group">
                 Recipe's ingredients:
                 <div class="row">
@@ -42,7 +43,7 @@
                                 $quantity = old('quantity');
                             @endphp
                             @for($i = 0; $i < count($ingredients); $i++)
-                                <div class="input-group">
+                                <div class="input-group mt-1">
                                     <div class="row">
                                         <div class="col-5">
                                             <input class="form-control" type="text" name="ingredient[]" value="{{ $ingredients[$i]}}" placeholder="ingredient name in english" required/>
@@ -77,6 +78,18 @@
                 @if ($errors->has('steps'))
                     <small class="alert-danger">
                         {{$errors->first('steps')}}
+                    </small>
+                @endif
+            </div>
+
+            <div class="form-group">
+                Recipe's Youtube tutorial:
+                <div class="input-group">
+                    <input type="text" class="form-control" name="link" placeholder="https://youtube.com/watch?v=4hj234" value="{{old('link')}}">
+                </div>
+                @if ($errors->has('link'))
+                    <small class="alert-danger">
+                        {{$errors->first('link')}}
                     </small>
                 @endif
             </div>
@@ -164,7 +177,7 @@
     function Add_ingredients() {
         var content = document.createElement("div");
         content.innerHTML =
-            "<div class='input-group'>"+
+            "<div class='input-group mt-1'>"+
                 "<div class='row'>"+
                     "<div class='col-5'>"+
                         "<input class='form-control' type='text' name='ingredient[]' value='{{ old('') }}' placeholder='ingredient name in english' required/>"+
