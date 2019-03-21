@@ -34,25 +34,10 @@ if (Auth::check()){
 </div>
 
 <style>
-    .card-body a.link{
-        float: left;
-    }
-    a.heart {
-        display:block;
-        color:red;
-        background-color: #ffffff;
-        border-radius: 50%;
-        float: right;
-        font-size:25px;
-        position:absolute;
-        right:-10px;
-        top:-10px;
-        height:40px;
-        width:40px;
-    }
-
-    a.heart i {
-        margin-left:8px;
-        margin-top:8px;
+    .card-body a.link{float: left;}
+    a.heart {display:block;color:red;background-color: #ffffff;border-radius: 50%;float: right;font-size:25px;position:absolute;right:-10px;top:-10px;height:40px;width:40px;}
+    a.heart i {margin-left:8px;margin-top:8px;}
+    .card .card-img-top{
+        max-height:250px !important;
     }
 </style>
