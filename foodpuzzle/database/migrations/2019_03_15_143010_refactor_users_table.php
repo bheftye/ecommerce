@@ -18,7 +18,6 @@ class RefactorUsersTable extends Migration
             $table->string('email_verified_at')->nullable();
             $table->timestamps();
             $table->string('remember_token', 100)->nullable();
-            $table->dropColumn('username');
         });
     }
 
@@ -34,7 +33,6 @@ class RefactorUsersTable extends Migration
             $table->dropColumn('email_verified_at');
             $table->dropTimestamps();
             $table->dropColumn('remember_token');
-            $table->string('username')->unique();
         });
     }
 }
