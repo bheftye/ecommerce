@@ -32,7 +32,6 @@ class RecipeController extends Controller
             $favorite = Favorite::where(['r_id' => $recipe->id, 'u_id' => Auth::user()->id])->first();
             if(!empty($favorite)) { //delete favourite
                 DB::table('favorites')->where(['u_id' => Auth::user()->id, 'r_id' => $recipe->id])->delete();
-
                 return redirect()->back();
             }
             else { //prepare to be favourite
@@ -57,6 +56,7 @@ class RecipeController extends Controller
      */
     protected function create(Request $request){
         $params = $request->only(self::attributes());
+        $params['steps'] = htmlspecialchars($params['steps']);
         $validator = $this->validator($params);
         if ($validator->fails()){
             return redirect('recipe/create')->withErrors($validator)->withInput();
@@ -96,7 +96,6 @@ class RecipeController extends Controller
             'carbohydrate' => ['numeric'],
             'protein' => ['numeric'],
             'sugar' => ['numeric'],
-            'vegan' => ['numeric'],
             'file' => ['required','image', 'max:1000']
         ]);
     }
