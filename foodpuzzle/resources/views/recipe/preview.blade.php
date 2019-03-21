@@ -21,12 +21,12 @@ if (Auth::check()){
     <div class="card" style="width:100%;position:relative;">
         <img src="{{asset('storage/' . $fileName)}}" class="card-img-top" alt="food-image"/>
         @if ($isUser)
-        <a href="recipe/favorite/{{$recipe->uuid}}" class="heart">
+        <a href="/recipe/favorite/{{$recipe->uuid}}" class="heart">
             <i style="color:red" class="{{$isFavorite? "fas fa-heart" : "far fa-heart"}}"></i>
         </a>
         @endif
         <div class="card-body">
-            <a href="recipe/{{$recipe->uuid}}" class="link">
+            <a href="/recipe/{{$recipe->uuid}}" class="link">
                 <p class="card-text">{{$recipe->rname}}</p>
             </a>
         </div>
