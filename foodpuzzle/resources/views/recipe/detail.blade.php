@@ -16,6 +16,15 @@ if (Auth::check()){
     $isFavorite = Favorite::isFavorite($recipe->id, $user->id);
 }
 
+/*Process youtube link */
+$youtubeId = null;
+if (!empty($recipe->link)){
+    preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $recipe->link, $matches);
+    $youtubeId = $matches[1];
+}
+
+
+
 @endphp
 @extends('layouts.main')
 
@@ -30,12 +39,13 @@ if (Auth::check()){
     p.author{font-size: 16px;font-style: italic;}
     .table thead th{border:hidden;}
     .table td, .table th {padding:.60rem !important;}
+    .table thead th {border-bottom:hidden !important;}
 </style>
 
 @section('content')
     <div class="row">
         <div class="container">
-            <div class="col-12 mt-5">
+            <div class="col-12 mt-5 mb-5">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <img class="detail" src="{{asset('storage/'.$fileName)}}" alt="recipe" />
@@ -50,23 +60,41 @@ if (Auth::check()){
                                 <p class="author">By <b>{{$recipe->user->name}}</b></p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="row">
+                            @include('recipe.detail.ingredients', ['recipe' => $recipe])
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="row">
                             @include('recipe.detail.properties', ['recipe' => $recipe])
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    @include('recipe.detail.ingredients', ['recipe' => $recipe])
-                </div>
-                <div class="row">
                     <div class="col-12 mt-5">
-                        <h5>Steps:</h5>
+                        <h5><u>Steps</u></h5>
                         <div>
                             {!!htmlspecialchars_decode($recipe->steps) !!}
                         </div>
                     </div>
                 </div>
-
+                @if (!empty($youtubeId))
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <h5><u>Video Tutorial</u></h5>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <iframe id="ytplayer" type="text/html" width="700px" height="400px"
+                                src="https://www.youtube.com/embed/{{$youtubeId}}?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                                frameborder="0" allowfullscreen
+                        ></iframe>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
