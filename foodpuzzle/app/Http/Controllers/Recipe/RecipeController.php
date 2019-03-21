@@ -26,7 +26,7 @@ class RecipeController extends Controller
      * @param $uuid
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function favorite(Request $request, $uuid){
+    public function favorite($uuid){
         $recipe = Recipe::where(['uuid' => $uuid])->first();
         if (!empty($recipe)){
             $favorite = Favorite::where(['r_id' => $recipe->id, 'u_id' => Auth::user()->id])->first();
