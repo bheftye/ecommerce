@@ -9,7 +9,9 @@
 namespace App\Http\Controllers\Recipe;
 
 use App\Favorite;
+use App\Food;
 use App\Http\Controllers\Controller;
+use App\Ingredient;
 use App\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,9 +59,18 @@ class RecipeController extends Controller
     protected function create(Request $request){
         $params = $request->only(self::attributes());
         $params['steps'] = htmlspecialchars($params['steps']);
+
         $validator = $this->validator($params);
-        if ($validator->fails()){
-            return redirect('recipe/create')->withErrors($validator)->withInput();
+        $ingredients = $params['ingredient'];
+        $ingredientsS = $params['ingredientS'];
+        $quantities = $params ['quantity'];
+
+        $ingredientValidation =
+            count($ingredients) === count($ingredientsS) &&
+            count($ingredients) === count($ingredientsS);
+
+        if ($validator->fails() || !$ingredientValidation){
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         //file upload
         try{
@@ -70,11 +81,32 @@ class RecipeController extends Controller
             $recipe->u_id = Auth::user()->id;
             $recipe->vegan = $request->has('vegan')? true:false;
             $recipe->save();
+
+            for($i = 0; $i < count($ingredients); $i++)
+            {
+                $foodParams = [
+                    'enname' => $ingredients[$i],
+                    'svname' => $ingredientsS[$i]
+                ];
+                $food = new Food($foodParams);
+                if (!$food->save()){
+                    Log::error($food->errors);
+                }
+                $ingredientParams = [
+                    'f_id' => $food->id,
+                    'r_id' => $recipe->id,
+                    'quantity' => $quantities[$i]
+                ];
+                $ingredient = new Ingredient($ingredientParams);
+                if(!$ingredient->save()){
+                    Log::error($ingredient->errors);
+                };
+            }
         } catch (\Exception $exception){
             Log::error($exception);
             if(isset($filePath))
                 Storage::delete($filePath);
-            return redirect('recipe/create')->withInput();
+            return redirect()->back()->withInput();
         }
 
         return redirect('/');
@@ -96,7 +128,8 @@ class RecipeController extends Controller
             'carbohydrate' => ['numeric'],
             'protein' => ['numeric'],
             'sugar' => ['numeric'],
-            'file' => ['required','image', 'max:1000']
+            'file' => ['required','image', 'max:1000'],
+
         ]);
     }
 
@@ -106,7 +139,18 @@ class RecipeController extends Controller
      */
     private function attributes(){
         return [
-            'rname', 'steps', 'calories', 'fat', 'carbohydrate', 'protein', 'sugar', 'vegan', 'file'
+            'rname',
+            'steps',
+            'calories',
+            'fat',
+            'carbohydrate',
+            'protein',
+            'sugar',
+            'vegan',
+            'file',
+            'ingredient',
+            'ingredientS',
+            'quantity'
         ];
     }
 

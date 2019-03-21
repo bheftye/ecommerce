@@ -51,40 +51,12 @@ if (Auth::check()){
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
-                                <table class="table table-striped mt-2">
-                                    <thead>
-                                    <tr>
-                                        <th>Property</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Calories</td>
-                                        <td>{{$recipe->calories}} kcal</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fat</td>
-                                        <td>{{$recipe->fat}} %</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Protein</td>
-                                        <td>{{$recipe->protein}} %</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Carbohydrate</td>
-                                        <td>{{$recipe->carbohydrate}} grams</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sugar</td>
-                                        <td>{{$recipe->sugar}} grams</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            @include('recipe.detail.properties', ['recipe' => $recipe])
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    @include('recipe.detail.ingredients', ['recipe' => $recipe])
                 </div>
                 <div class="row">
                     <div class="col-12 mt-5">
@@ -94,6 +66,7 @@ if (Auth::check()){
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
