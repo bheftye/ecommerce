@@ -12,13 +12,13 @@ use App\Favorite;
 use App\Http\Controllers\Controller;
 use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use \Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Uuid\Uuid;
-use DB;
 
 class RecipeController extends Controller
 {
@@ -26,32 +26,24 @@ class RecipeController extends Controller
      * @param $uuid
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function favorite($uuid){
+    public function favorite(Request $request, $uuid){
         $recipe = Recipe::where(['uuid' => $uuid])->first();
-        Log::error(json_encode($recipe));
-//        $userId=1;
-        if (Auth::check()){
-            $user = Auth::user();
-            $userId = $user->id;
-        }
         if (!empty($recipe)){
-            
-            $result = DB::table('favorites')->where(['u_id'=> $userId,'r_id' => $recipe->id]);
-            $result1 = $result->get();
-            
-            if(!$result1->isEmpty()) { //delete favourite
-                $result->delete();
-                return redirect('/');
+            $favorite = Favorite::where(['r_id' => $recipe->id, 'u_id' => Auth::user()->id])->first();
+            if(!empty($favorite)) { //delete favourite
+                DB::table('favorites')->where(['u_id' => Auth::user()->id, 'r_id' => $recipe->id])->delete();
+
+                return redirect()->back();
             }
             else { //prepare to be favourite
                 $favorite = new Favorite();
                 $favorite->r_id = $recipe->id;
-                $favorite->u_id = $userId;
+                $favorite->u_id = Auth::user()->id;
                 if($favorite->save()){
-                    return redirect('/');
+                    return redirect()->back();
                 } else {
                     Log::error($favorite->errors);
-                    return redirect('/');
+                    return redirect()->back();
                 }
             }    
             
@@ -75,7 +67,7 @@ class RecipeController extends Controller
             $recipe = new Recipe($params);
             $recipe->uuid = Uuid::generate();
             $recipe->img_file = $filePath;
-            $recipe->u_id = 1;
+            $recipe->u_id = Auth::user()->id;
             $recipe->vegan = $request->has('vegan')? true:false;
             $recipe->save();
         } catch (\Exception $exception){

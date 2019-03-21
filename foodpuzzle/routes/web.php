@@ -1,6 +1,7 @@
 <?php
 
 use App\Recipe;
+use \Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,12 +43,15 @@ Route::get('/search-result', function () {
     return view('recipe.searchresultpage');
 });
 
-Route::get('/favorite', function () {
-    $recipes = Auth::user()->favorites;
-    return view('favorite.favorite')->with(['recipes' => $recipes]);
-});
-
 Route::prefix('recipe')->group(function () {
+
+    Route::get('favorites', function (){
+        $recipes = [];
+        if (Auth::check()){
+            $recipes = Auth::user()->favorites;
+        }
+        return view('recipe.favorites')->with(['recipes' => $recipes]);
+    });
 
     Route::get('favorite/{uuid}', 'Recipe\RecipeController@favorite');
 
@@ -55,9 +59,13 @@ Route::prefix('recipe')->group(function () {
         return view('recipe.create');
     });
 
-    Route::get('{id}', function ($id){
-        $recipe = Recipe::findOrFail(['uuid' => $id]);
-        return view('recipe.view')->with(['recipe' => $recipe]);
+    Route::get('{uuid}', function ($uuid){
+        $recipe = Recipe::where(['uuid' => $uuid])->first();
+        if (!empty($recipe)){
+            return view('recipe.detail')->with(['recipe' => $recipe]);
+        } else {
+            return redirect()->back();
+        }
     });
 
     Route::post('create', 'Recipe\RecipeController@create');

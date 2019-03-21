@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
  * @var array
  */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'uuid',
     ];
 
     /**
@@ -31,6 +32,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function recipes () {
         return $this->hasMany('App\Recipe', 'u_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function favorites () {
         return $this->belongsToMany('App\Recipe', 'favorites', 'u_id', 'r_id');
     }

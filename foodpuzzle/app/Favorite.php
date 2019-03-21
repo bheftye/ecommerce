@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -47,6 +46,7 @@ class Favorite extends Model
     {
         return $this->belongsTo('App\User', 'u_id');
     }
+
     /**
      * @param $r_id
      * @param $u_id

@@ -4,6 +4,9 @@
 
 @php
 $placeHolder = "Search your favourite recipes";
+/**
+* $recipes array Receives an array of recipes.
+*/
 @endphp
 
 @section('content')
