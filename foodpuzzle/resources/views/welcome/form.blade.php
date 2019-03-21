@@ -10,7 +10,9 @@
             />
             <div class="input-group-append">
                 <span class="input-group-text">
-                    <i class="fas fa-search"></i>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-search"></i>
+                    </button>                    
                 </span>
             </div>
         </div>

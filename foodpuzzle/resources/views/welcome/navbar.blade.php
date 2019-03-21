@@ -3,15 +3,12 @@
   <!-- this part need to be fixed, user need to verify their email before using. -->
   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
           <a class="nav-link" href="/create">Create</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="/search-result">Result</a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
           <a class="nav-link" href="/recipe/favorites">Favorites</a>
-      </li>
+      </li> -->
     </ul>
   </div>
   <!-- Middle Of Navbar -->
@@ -42,6 +39,11 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/usermain"
+                 onclick="">
+                  {{ __('My Recipe') }}
+              </a>
+
               <a class="dropdown-item" href="{{ route('logout') }}"
                  onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
