@@ -8,7 +8,7 @@
 		@include('layouts.sidebar')
 	</div>
 	<div class="col-10">
-		@include('layouts.recipebox', ['recipes' => $recipes])
+		@include('recipe.recipes', ['recipes' => $recipes])
 	</div>	
 </div>
 @endsection
