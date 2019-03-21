@@ -35,25 +35,38 @@
                 Recipe's ingredients:
                 <div class="row">
                     <div class="col-11" id="add_item">
-                        <div class="input-group">
-                            <div class="row">
-                                <div class="col-5">
-                                    <input class="form-control" type="text" name="ingredient[]" value="{{ old('') }}" placeholder="ingredient name in english" required/>
+                        @if(!empty(old('ingredient')))
+                            @php
+                                $ingredients = old('ingredient');
+                                $ingredientsS = old('ingredientS');
+                                $quantity = old('quantity');
+                            @endphp
+                            @for($i = 0; $i < count($ingredients); $i++)
+                                <div class="input-group">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <input class="form-control" type="text" name="ingredient[]" value="{{ $ingredients[$i]}}" placeholder="ingredient name in english" required/>
+                                        </div>
+                                        <div class="col-5">
+                                            <input class="form-control" type="text" name="ingredientS[]" value="{{ $ingredientsS[$i] }}" placeholder="ingredient name in swedish" required/>
+                                        </div>
+                                        <div class="col-2">
+                                            <input class="form-control" type="text" name="quantity[]" value="{{ $quantity[$i] }}" placeholder="quantity" required/>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    <input class="form-control" type="text" name="ingredientS[]" value="{{ old('') }}" placeholder="ingredient name in swedish" required/>
-                                </div>
-                                <div class="col-2">
-                                    <input class="form-control" type="text" name="quantity[]" value="{{ old('') }}" placeholder="quantity" required/>
-                                </div>
-                            </div>
-                        </div>
+                            @endfor
+                        @endif
                     </div>
                     <div class="col-1">
                         <button class='btn btn-success btn-block' onclick="Add_ingredients()"> + </button>
                     </div>
                 </div>
-
+                @if ($errors->has('ingredient'))
+                    <small class="alert-danger">
+                        {{$errors->first('ingredient')}}
+                    </small>
+                @endif
             </div>
             
             <div class="form-group">
@@ -71,7 +84,7 @@
             <div class="form-group">
                 Calories(kcal):
                 <div class="input-group">
-                    <input class="form-control" type="number"  name="calories" value="{{ old('calories') }}" placeholder="kcal"/>
+                    <input class="form-control" type="number" step="any" min="0"  name="calories" value="{{ old('calories') }}" placeholder="kcal"/>
                 </div>
                 @if ($errors->has('calories'))
                     <small class="alert-danger">
@@ -83,7 +96,7 @@
             <div class="form-group">
                 Fat(%):
                 <div class="input-group">
-                    <input class="form-control" type="number" name="fat" value="{{ old('fat') }}" placeholder=" 0-100 %"/>
+                    <input class="form-control" type="number" step="any" min="0" name="fat" value="{{ old('fat') }}" placeholder=" 0-100 %"/>
                 </div>
                 @if ($errors->has('fat'))
                     <small class="alert-danger">
@@ -95,7 +108,7 @@
             <div class="form-group">
                 Carbohydrates(g):
                 <div class="input-group">
-                    <input class="form-control" type="number" name="carbohydrate" value="{{ old('carbohydrate') }}" placeholder="g"/>
+                    <input class="form-control" type="number" step="any" min="0" name="carbohydrate" value="{{ old('carbohydrate') }}" placeholder="g"/>
                 </div>
                 @if ($errors->has('carbohydrate'))
                     <small class="alert-danger">
@@ -107,7 +120,7 @@
             <div class="form-group">
                 Protein(%):
                 <div class="input-group">
-                    <input class="form-control" type="number" name="protein" value="{{ old('protein') }}" placeholder=" 0-100 %"/>
+                    <input class="form-control" type="number" step="any" min="0" name="protein" value="{{ old('protein') }}" placeholder=" 0-100 %"/>
                 </div>
                 @if ($errors->has('protein'))
                     <small class="alert-danger">
@@ -119,7 +132,7 @@
             <div class="form-group">
                 Sugar(g):
                 <div class="input-group">
-                    <input class="form-control" type="number" name="sugar" value="{{ old('sugar') }}"  placeholder="g"/>
+                    <input class="form-control" type="number" step="any" min="0" name="sugar" value="{{ old('sugar') }}"  placeholder="g"/>
                 </div>
                 @if ($errors->has('sugar'))
                     <small class="alert-danger">

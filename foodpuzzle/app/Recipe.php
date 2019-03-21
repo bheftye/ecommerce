@@ -33,5 +33,9 @@ class Recipe extends Model
         return $this->belongsTo('App\User', 'u_id');
     }
 
+    public function ingredients(){
+        return $this->hasMany('App\Ingredient', 'r_id');
+    }
+
 
 }

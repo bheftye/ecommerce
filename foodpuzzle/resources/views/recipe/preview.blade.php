@@ -17,7 +17,7 @@ if (Auth::check()){
     $isFavorite = Favorite::isFavorite($recipe->id, $user->id);
 }
 @endphp
-<div class="col-12 col-md-4">
+<div class="col-12 col-md-4 mt-3">
     <div class="card" style="width:100%;position:relative;">
         <img src="{{asset('storage/' . $fileName)}}" class="card-img-top" alt="food-image"/>
         @if ($isUser)
