@@ -21,6 +21,23 @@ class SearchRecipeController extends Controller
         ->orWhere('steps','LIKE','%' . $query . '%')
         ->get();
 
-    	return view('recipe.searchresultpage', ['recipes' => $recipes]);
+    	return view('welcome', ['recipes' => $recipes]);
+    }
+
+    function adsearch(Request $req)
+    {
+        $protein = $req->input('protein');
+        $fat = $req->input('fat');
+        $carbohydrate = $req->input('carbohydrate');
+
+        $recipes = DB::table('recipes')
+        ->where([
+            ['protein', '<=', $protein],
+            ['fat', '<=', $fat],
+            ['carbohydrate', '<=', $carbohydrate],
+        ])
+        ->get();
+
+        return view('recipe.searchresultpage', ['recipes' => $recipes]);
     }
 }

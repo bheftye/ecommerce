@@ -3,14 +3,44 @@
     style="position:fixed; height:100vh; overflow: auto;"
 >
 
-  <form class="form-signin" style="margin-top:40px">
+  <form style="margin-top:40px" method="POST" action="/adsearch">
+    @csrf
     <br>
     <h6 class="row justify-content-center font-weight-normal" style="color: white;">WELCOME</h6><br>
 
-    <input type="number" id="inputEmail" class="form-control" placeholder="Protein" required autofocus><br>
-    <input type="number" id="inputPassword" class="form-control" placeholder="Fat" required>
+    Calories(kcal)
+    <input 
+        type="number" 
+        name="calories" 
+        class="form-control" 
+        placeholder="e.g. 350 kcal" 
+        required 
+        autofocus
+    >
     <br>
-    <input type="number" id="inputPassword" class="form-control" placeholder="Carbohydrate" required>
+    Protein(0-100%)
+    <input 
+        type="number" 
+        name="protein" 
+        class="form-control" 
+        placeholder="e.g. 15%"
+    >
+    <br>
+    Fat(0-100%)
+    <input 
+        type="number" 
+        name="fat" 
+        class="form-control" 
+        placeholder="e.g. 50%"
+    >
+    <br>
+    Carbohydrate(0-100%)
+    <input 
+        type="number" 
+        name="carbohydrate" 
+        class="form-control" 
+        placeholder="e.g. 35%"
+    >
     <br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>

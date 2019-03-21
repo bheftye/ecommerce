@@ -1,7 +1,7 @@
 <div style="width:100%">
     <ul class="nav nav-pills nav-stacked flex-column">
         <li class="nav-item bg-danger">
-            <a class="nav-link" href="#">My Recipe</a>
+            <a class="nav-link" href="/usermain">My Recipe</a>
         </li>
 
         <li class="nav-item bg-danger">
@@ -9,7 +9,7 @@
         </li>
 
         <li class="nav-item bg-danger">
-            <a class="nav-link" href="#">Advanced Search</a>
+            <a class="nav-link" href="/search-result">Advanced Search</a>
         </li>
 
         <li class="nav-item bg-danger">

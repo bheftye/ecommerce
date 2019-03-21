@@ -27,18 +27,16 @@ Route::get('/myregister', function () {
     return view('auth.register');
 });
 
-Route::get('/create', function () {
-    return view('recipe.create');
-});
-
 Route::post('/search', 'Recipe\SearchRecipeController@search');
 
-Route::get('/captcha', function () {
-    return view('user.captcha');
-});
+Route::post('/adsearch', 'Recipe\SearchRecipeController@adsearch');
 
 Route::get('/usermain', function () {
-    return view('user.user-main');
+    $recipes = [];
+    if (Auth::check()){
+        $recipes = Auth::user()->recipes;
+    }
+    return view('user.user-main')->with(['recipes' => $recipes]);
 })->middleware('verified');
 
 Route::get('/usermain/create', function () {
