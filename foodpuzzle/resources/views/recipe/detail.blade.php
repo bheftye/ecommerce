@@ -16,6 +16,15 @@ if (Auth::check()){
     $isFavorite = Favorite::isFavorite($recipe->id, $user->id);
 }
 
+/*Process youtube link */
+$youtubeId = null;
+if (!empty($recipe->link)){
+    preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $recipe->link, $matches);
+    $youtubeId = $matches[1];
+}
+
+
+
 @endphp
 @extends('layouts.main')
 
@@ -73,9 +82,19 @@ if (Auth::check()){
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    
-                </div>
+                @if (!empty($youtubeId))
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <h5><u>Video Tutorial</u></h5>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <iframe id="ytplayer" type="text/html" width="700px" height="400px"
+                                src="https://www.youtube.com/embed/{{$youtubeId}}?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                                frameborder="0" allowfullscreen
+                        ></iframe>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
