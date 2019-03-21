@@ -23,53 +23,76 @@ if (Auth::check()){
 
 <style>
     img.detail{max-width:100%;height:auto}
-    a.heart{display:block;color:red;float:right;}
+    a.heart{position:relative;display:block;float:right;color:red;background-color:#ffffff;height:50px;width:50px;border-radius:50%;}
     a.heart:hover{color:red}
+    a.heart i{margin-left:10px;margin-top:10px;}
     h3.title{font-size:30px;}
     p.author{font-size: 16px;font-style: italic;}
+    .table thead th{border:hidden;}
+    .table td, .table th {padding:.60rem !important;}
 </style>
 
 @section('content')
     <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12 col-md-5">
-                    <img class="detail" src="{{asset('storage/'.$fileName)}}" alt="recipe" />
-                </div>
-                <div class="col-12 col-md-7">
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="/recipe/favorite/{{$recipe->uuid}}" class="heart">
-                                <i class="{{$isFavorite? "fa-2x fas fa-heart" : "fa-2x far fa-heart"}}"></i>
-                            </a>
-                            <h3 class="title">{{$recipe->rname}}</h3>
-                            <p class="author">By <b>{{$recipe->user->name}}</b></p>
+        <div class="container">
+            <div class="col-12 mt-5">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <img class="detail" src="{{asset('storage/'.$fileName)}}" alt="recipe" />
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/recipe/favorite/{{$recipe->uuid}}" class="heart">
+                                    <i class="{{$isFavorite? "fa-2x fas fa-heart" : "fa-2x far fa-heart"}}"></i>
+                                </a>
+                                <h3 class="title">{{$recipe->rname}}</h3>
+                                <p class="author">By <b>{{$recipe->user->name}}</b></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-striped mt-2">
+                                    <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Calories</td>
+                                        <td>{{$recipe->calories}} kcal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fat</td>
+                                        <td>{{$recipe->fat}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Protein</td>
+                                        <td>{{$recipe->protein}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carbohydrate</td>
+                                        <td>{{$recipe->carbohydrate}} grams</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sugar</td>
+                                        <td>{{$recipe->sugar}} grams</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="properties">
-                                calories: {{$recipe->calories}} kl
-                                <br/>
-                                fat: {{$recipe->fat}} %
-                                <br/>
-                                protein: {{$recipe->protein}} %
-                                <br/>
-                                carbohydrate: {{$recipe->carbohydrate}}
-                                <br/>
-                                sugar: {{$recipe->sugar}} g
-                                <br/>
-                            </p>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-8 offset-md-2 mt-5">
-                    <h5>Steps:</h5>
-                    <p>
-                        {{$recipe->steps}}
-                    </p>
+                <div class="row">
+                    <div class="col-12 mt-5">
+                        <h5>Steps:</h5>
+                        <p>
+                            {{$recipe->steps}}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
