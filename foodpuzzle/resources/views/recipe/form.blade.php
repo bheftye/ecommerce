@@ -1,3 +1,6 @@
+<style>
+    #recipe-form .note-editor.note-frame{width:100%;}
+</style>
 <div class="col-12 pt-5 mb-5">
     <form id="recipe-form" class="row" method="POST" enctype="multipart/form-data" action="/recipe/create">
         <div class="col-8 offset-2">
@@ -56,7 +59,7 @@
             <div class="form-group">
                 Recipe's steps:
                 <div class="input-group">
-                    <textarea class="form-control" name="steps" placeholder="Step 1:" required>{{ trim(old('')) }}</textarea>
+                    <textarea id="summernote" class="form-control" name="steps" placeholder="Step 1:" required>{{ trim(old('steps')) }}</textarea>
                 </div>
                 @if ($errors->has('steps'))
                     <small class="alert-danger">
@@ -165,4 +168,19 @@
         var temp = document.getElementById("add_item");
         temp.appendChild(content);
     }
+
+    $('#summernote').summernote({
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline']],
+            ['font', ['strikethrough',]],
+            ['fontsize', ['fontsize']],
+            ['para', ['ul', 'ol', 'paragraph']],
+        ],
+        placeholder: 'Step 1: Do something',
+        tabsize: 2,
+        height: 150,
+        name: 'steps',
+        disableDragAndDrop: true,
+
+    });
 </script>

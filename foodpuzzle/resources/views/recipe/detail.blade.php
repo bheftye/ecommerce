@@ -89,9 +89,9 @@ if (Auth::check()){
                 <div class="row">
                     <div class="col-12 mt-5">
                         <h5>Steps:</h5>
-                        <p>
-                            {{$recipe->steps}}
-                        </p>
+                        <div>
+                            {!!htmlspecialchars_decode($recipe->steps) !!}
+                        </div>
                     </div>
                 </div>
             </div>
