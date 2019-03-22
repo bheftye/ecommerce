@@ -23,4 +23,43 @@ class SearchRecipeController extends Controller
 
     	return view('recipe.searchresultpage', ['recipes' => $recipes]);
     }
+
+    function adsearch(Request $req)
+    {
+        $this -> validate($req, [            
+            'protein' => 'nullable|integer|between:0,100',
+            'fat' => 'nullable|integer|between:0,100',
+            'carbohydrate' => 'nullable|integer|between:0,100',
+            'calories' => 'nullable|required_without_all:protein,fat,carbohydrate|integer',
+        ]);
+
+        $calories = $req->input('calories');
+        $protein = $req->input('protein');
+        $fat = $req->input('fat');
+        $carbohydrate = $req->input('carbohydrate');
+
+        if ($protein==''){
+            $protein = 100;
+        }
+        if ($fat==''){
+            $fat = 100;
+        }
+        if ($carbohydrate==''){
+            $carbohydrate = 100;
+        }
+        if ($calories==''){
+            $calories = 10000;
+        }
+
+        $recipes = DB::table('recipes')
+        ->where([
+            ['calories', '<=', $calories],
+            ['protein', '<=', $protein],
+            ['fat', '<=', $fat],
+            ['carbohydrate', '<=', $carbohydrate],
+        ])
+        ->get();
+
+        return view('recipe.searchresultpage', ['recipes' => $recipes]);
+    }
 }

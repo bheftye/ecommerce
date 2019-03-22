@@ -8,7 +8,17 @@
 		@include('layouts.sidebar')
 	</div>
 	<div class="col-10 mt-2 offset-2">
-		@include('layouts.recipebox', ['recipes' => $recipes])
+		@if (count($errors) > 0)
+			<ul>
+			    @foreach ($errors->all() as $error)
+			        <li class="alert alert-danger">{{$error}}</li>
+			    @endforeach
+			</ul>
+		@endif
+		@if (isset($recipes))
+			@include('layouts.recipebox', ['recipes' => $recipes])
+		@else
+		@endif
 	</div>
 </div>
 @endsection
