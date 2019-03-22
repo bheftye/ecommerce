@@ -12,7 +12,7 @@
                 <span class="input-group-text">
                     <button type="submit" class="btn">
                         <i class="fas fa-search"></i>
-                    </button>                    
+                    </button>
                 </span>
             </div>
         </div>
