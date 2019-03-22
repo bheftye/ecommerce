@@ -109,7 +109,7 @@ class RecipeController extends Controller
             return redirect()->back()->withInput();
         }
 
-        return redirect('/');
+        return redirect('/usermain');
     }
 
     /**
