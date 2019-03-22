@@ -56,7 +56,7 @@ if (!empty($recipe->link)){
                                 <a href="/recipe/favorite/{{$recipe->uuid}}" class="heart">
                                     <i class="{{$isFavorite? "fa-2x fas fa-heart" : "fa-2x far fa-heart"}}"></i>
                                 </a>
-                                <h3 class="title">{{$recipe->rname}}</h3>
+                                <h3 class="title" style="word-wrap:break-word;">{{$recipe->rname}}</h3>
                                 <p class="author">By <b>{{$recipe->user->name}}</b></p>
                             </div>
                         </div>
