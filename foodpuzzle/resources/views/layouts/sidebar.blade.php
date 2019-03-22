@@ -33,12 +33,12 @@
         placeholder="0-100"
     >
     <br>
-    Carbohydrate(0-100%)
+    Carbohydrate(grams)
     <input 
         type="number" 
         name="carbohydrate" 
         class="form-control" 
-        placeholder="0-100"
+        placeholder="i.e. 300 grams"
     >
     <br>
 
