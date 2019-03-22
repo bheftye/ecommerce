@@ -1,6 +1,6 @@
 <nav
     class="nav justify-content-center"
-    style="position:fixed; height:100vh; overflow: auto;"
+    style="position:relative; height:100vh; overflow: auto;"
 >
 
   <form style="margin-top:40px" method="POST" action="/adsearch">
