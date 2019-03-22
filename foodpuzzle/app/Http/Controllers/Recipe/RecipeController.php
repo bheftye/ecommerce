@@ -113,6 +113,76 @@ class RecipeController extends Controller
     }
 
     /**
+     * @param \Illuminate\Http\Request $request
+     * @param $uuid
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    protected function edit(Request $request, $uuid){
+        $params = $request->only(self::attributes());
+        $params['steps'] = htmlspecialchars($params['steps']);
+
+        $validator = $this->validatorUpdate($params);
+        $ingredients = $params['ingredient'];
+        $ingredientsS = $params['ingredientS'];
+        $quantities = $params ['quantity'];
+
+        $ingredientValidation =
+            count($ingredients) === count($ingredientsS) &&
+            count($ingredients) === count($ingredientsS);
+
+        if ($validator->fails() || !$ingredientValidation){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $recipe = Recipe::where(['uuid' => $uuid])->first();
+        if (!empty($recipe)){
+            try{
+                if ($request->file('file')){
+                    $filePath = $request->file('file')->store('public');
+                    $recipe->img_file = $filePath;
+                }
+                $recipe->fill($params);
+                $recipe->vegan = $request->has('vegan')? true:false;
+                $recipe->save();
+
+                foreach($recipe->ingredients as $ingredient){
+                    $food = $ingredient->food;
+                    $ingredient->delete();
+                    $food->delete();
+                }
+
+                for($i = 0; $i < count($ingredients); $i++)
+                {
+                    $foodParams = [
+                        'enname' => $ingredients[$i],
+                        'svname' => $ingredientsS[$i]
+                    ];
+                    $food = new Food($foodParams);
+                    if (!$food->save()){
+                        Log::error($food->errors);
+                    }
+                    $ingredientParams = [
+                        'f_id' => $food->id,
+                        'r_id' => $recipe->id,
+                        'quantity' => $quantities[$i]
+                    ];
+                    $ingredient = new Ingredient($ingredientParams);
+                    if(!$ingredient->save()){
+                        Log::error($ingredient->errors);
+                    };
+                }
+            } catch (\Exception $exception){
+                Log::error($exception);
+                if(isset($filePath))
+                    Storage::delete($filePath);
+                return redirect()->back()->withInput();
+            }
+        }
+
+        return redirect('/usermain');
+    }
+
+
+    /**
      * @param $uuid
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -149,6 +219,24 @@ class RecipeController extends Controller
             'ingredientS.*' => ['string'],
             'quantity.*' => ['string']
 
+        ]);
+    }
+
+
+    protected function validatorUpdate(array $data){
+        return Validator::make($data, [
+            'rname' => ['required', 'string', 'max:255'],
+            'steps' => ['required', 'string'],
+            'calories' => ['numeric'],
+            'fat' => ['numeric'],
+            'carbohydrate' => ['numeric'],
+            'protein' => ['numeric'],
+            'sugar' => ['numeric'],
+            'file' => ['nullable','image', 'max:1000'],
+            'link' => ['nullable','url'],
+            'ingredient.*' => ['string'],
+            'ingredientS.*' => ['string'],
+            'quantity.*' => ['string']
         ]);
     }
 

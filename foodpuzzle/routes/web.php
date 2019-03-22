@@ -82,7 +82,17 @@ Route::prefix('recipe')->group(function () {
 
     Route::post('create', 'Recipe\RecipeController@create');
 
-    Route::get('delete/{uuid}', 'Recipe\RecipeController@delete')->middleware('verified');
+    Route::get('delete/{uuid}', 'Recipe\RecipeController@delete');
+
+    Route::get('edit/{uuid}', function ($uuid) {
+        $recipe = Recipe::where(['uuid' => $uuid])->first();
+        if (!empty($recipe) && Auth::user()->id === $recipe->u_id){
+            return view('recipe.edit')->with(['recipe' => $recipe, 'action' => 'edit']);
+        }
+        return redirect()->back();
+    });
+
+    Route::post('edit/{uuid}', 'Recipe\RecipeController@edit');
 });
 
 Auth::routes(['verify' => true]);
