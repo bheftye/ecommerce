@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', "Log In Page")
+@section('title', "Create Recipe!")
 
 @section('content')
 <div class="row" style="height:100vh;">

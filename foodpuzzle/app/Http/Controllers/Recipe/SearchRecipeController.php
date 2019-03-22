@@ -17,9 +17,11 @@ class SearchRecipeController extends Controller
     	$query = $req->input('query');
 
     	$recipes = DB::table('recipes')
-        ->where('rname','LIKE','%' . $query . '%')
-        ->orWhere('steps','LIKE','%' . $query . '%')
-        ->get();
+            ->whereNull('deleted_at')
+            ->where('rname','LIKE','%' . $query . '%')
+            ->orWhere('steps','LIKE','%' . $query . '%')
+            ->whereNull('deleted_at')
+            ->get();
 
     	return view('welcome', ['recipes' => $recipes]);
     }
@@ -52,13 +54,14 @@ class SearchRecipeController extends Controller
         }
 
         $recipes = DB::table('recipes')
-        ->where([
-            ['calories', '<=', $calories],
-            ['protein', '<=', $protein],
-            ['fat', '<=', $fat],
-            ['carbohydrate', '<=', $carbohydrate],
-        ])
-        ->get();
+            ->whereNull('deleted_at')
+            ->where([
+                ['calories', '<=', $calories],
+                ['protein', '<=', $protein],
+                ['fat', '<=', $fat],
+                ['carbohydrate', '<=', $carbohydrate],
+            ])
+            ->get();
 
         return view('recipe.searchresultpage', ['recipes' => $recipes]);
     }

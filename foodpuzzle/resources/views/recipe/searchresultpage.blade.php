@@ -16,7 +16,7 @@
 			</ul>
 		@endif
 		@if (isset($recipes))
-			@include('layouts.recipebox', ['recipes' => $recipes])
+			@include('recipe.recipes', ['recipes' => $recipes])
 		@else
 		@endif
 	</div>
