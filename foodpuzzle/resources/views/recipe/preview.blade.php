@@ -16,6 +16,14 @@ if (Auth::check()){
     $user = Auth::user();
     $isFavorite = Favorite::isFavorite($recipe->id, $user->id);
 }
+
+if(strlen($recipe->rname)>30){
+    $dot = "...";
+    $rec = substr($recipe->rname, 0, 30).$dot;
+}
+else{
+    $rec = $recipe->rname;
+}
 @endphp
 <div class="col-12 col-md-4 mt-3">
     <div class="card" style="width:100%;position:relative;">
@@ -27,7 +35,7 @@ if (Auth::check()){
         @endif
         <div class="card-body">
             <a href="/recipe/{{$recipe->uuid}}" class="link">
-                <p class="card-text">{{$recipe->rname}}</p>
+                <p class="card-text">{{$rec}}</p>
             </a>
         </div>
     </div>
