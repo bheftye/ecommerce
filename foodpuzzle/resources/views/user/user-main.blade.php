@@ -9,7 +9,7 @@
 	</div>
 	<div class="col-10 offset-2">
 		<div class="row">
-	        @include('recipe.recipes', ['recipes' => $recipes])
+	        @include('recipe.recipes', ['recipes' => $recipes, 'showFavorites' => false])
 	    </div>
 	</div>	
 </div>

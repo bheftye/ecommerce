@@ -20,7 +20,7 @@ if (Auth::check()){
 <div class="col-12 col-md-4 mt-3">
     <div class="card" style="width:100%;position:relative;">
         <img src="{{asset('storage/' . $fileName)}}" class="card-img-top" alt="food-image"/>
-        @if ($isUser)
+        @if ($isUser && $showFavorites)
         <a href="/recipe/favorite/{{$recipe->uuid}}" class="heart">
             <i style="color:red" class="{{$isFavorite? "fas fa-heart" : "far fa-heart"}}"></i>
         </a>

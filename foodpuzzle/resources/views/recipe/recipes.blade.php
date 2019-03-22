@@ -1,8 +1,11 @@
+@php
+$showFavorites = isset($showFavorites)? $showFavorites: true;
+@endphp
 <div class="col-12 mt-5">
     <div class="row">
         @if (count($recipes) > 0)
             @foreach($recipes as $recipe)
-                @include('recipe.preview', ['recipe' => $recipe])
+                @include('recipe.preview', ['recipe' => $recipe, 'showFavorites' => $showFavorites])
             @endforeach
         @else
             <div class="col-md-12">
