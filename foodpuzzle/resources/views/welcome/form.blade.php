@@ -10,9 +10,9 @@
             />
             <div class="input-group-append">
                 <span class="input-group-text">
-                    <a herf="#" onclick="document.getElementById('search-form').submit()">
+                    <button type="submit" class="btn">
                         <i class="fas fa-search"></i>
-                    </a>                    
+                    </button>
                 </span>
             </div>
         </div>

@@ -57,6 +57,20 @@
                                     </div>
                                 </div>
                             @endfor
+                        @else
+                            <div class="input-group mt-1">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <input class="form-control" type="text" name="ingredient[]" value="" placeholder="ingredient name in english" required/>
+                                    </div>
+                                    <div class="col-5">
+                                        <input class="form-control" type="text" name="ingredientS[]" value="" placeholder="ingredient name in swedish" required/>
+                                    </div>
+                                    <div class="col-2">
+                                        <input class="form-control" type="text" name="quantity[]" value="" placeholder="quantity" required/>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
                     <div class="col-1">
@@ -109,7 +123,7 @@
             <div class="form-group">
                 Fat(%):
                 <div class="input-group">
-                    <input class="form-control" type="number" step="any" min="0" name="fat" value="{{ old('fat') }}" placeholder=" 0-100 %"/>
+                    <input class="form-control" type="number" step="any" min="0" max="100" name="fat" value="{{ old('fat') }}" placeholder=" 0-100 %"/>
                 </div>
                 @if ($errors->has('fat'))
                     <small class="alert-danger">
@@ -133,7 +147,7 @@
             <div class="form-group">
                 Protein(%):
                 <div class="input-group">
-                    <input class="form-control" type="number" step="any" min="0" name="protein" value="{{ old('protein') }}" placeholder=" 0-100 %"/>
+                    <input class="form-control" type="number" step="any" min="0" max="100" name="protein" value="{{ old('protein') }}" placeholder=" 0-100 %"/>
                 </div>
                 @if ($errors->has('protein'))
                     <small class="alert-danger">

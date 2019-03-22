@@ -129,7 +129,7 @@ class RecipeController extends Controller
             'protein' => ['numeric'],
             'sugar' => ['numeric'],
             'file' => ['required','image', 'max:1000'],
-            'link' => ['string'],
+            'link' => ['nullable','url'],
             'ingredient.*' => ['string'],
             'ingredientS.*' => ['string'],
             'quantity.*' => ['string']
