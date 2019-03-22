@@ -27,8 +27,8 @@ class AddForeignKeysBuyFoodStores extends Migration
     public function down()
     {
         Schema::table('buy', function($table) {
-            $table->dropForeign('buy_food_id_foreign');
-            $table->dropForeign('buy_store_id_foreign');
+            $table->dropForeign('buy_f_id_foreign');
+            $table->dropForeign('buy_st_id_foreign');
         });
 
     }

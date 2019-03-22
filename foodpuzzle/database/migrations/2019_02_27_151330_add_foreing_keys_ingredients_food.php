@@ -29,8 +29,8 @@ class AddForeingKeysIngredientsFood extends Migration
     {
 
         Schema::table('ingredients', function($table) {
-            $table->dropForeign('ingredients_recipe_id_foreign');
-            $table->dropForeign('ingredients_food_id_foreign');
+            $table->dropForeign('ingredients_r_id_foreign');
+            $table->dropForeign('ingredients_f_id_foreign');
         });
 
     }
