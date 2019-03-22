@@ -57,6 +57,20 @@
                                     </div>
                                 </div>
                             @endfor
+                        @else
+                            <div class="input-group mt-1">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <input class="form-control" type="text" name="ingredient[]" value="" placeholder="ingredient name in english" required/>
+                                    </div>
+                                    <div class="col-5">
+                                        <input class="form-control" type="text" name="ingredientS[]" value="" placeholder="ingredient name in swedish" required/>
+                                    </div>
+                                    <div class="col-2">
+                                        <input class="form-control" type="text" name="quantity[]" value="" placeholder="quantity" required/>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
                     <div class="col-1">
