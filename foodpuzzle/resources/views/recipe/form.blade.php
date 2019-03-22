@@ -6,7 +6,7 @@
         <div class="col-10">
             @csrf
             <div class="form-group">
-                Recipe's name:
+                Recipe's name<font color="red">*</font>:
                 <div class="input-group">
                     <input class="form-control" type="text" name="rname" value="{{ old('rname') }}" placeholder="name" required/>
                 </div>
@@ -18,7 +18,7 @@
             </div>
 
             <div class="form-group">
-                Recipe's picture:
+                Recipe's picture<font color="red">*</font>:
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="inputGroupFile01" name="file" aria-describedby="inputGroupFileAddon01" required>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                Recipe's ingredients:
+                Recipe's ingredients<font color="red">*</font>:
                 <div class="row">
                     <div class="col-11" id="add_item">
                         @if(!empty(old('ingredient')))
@@ -85,7 +85,7 @@
             </div>
             
             <div class="form-group">
-                Recipe's steps:
+                Recipe's steps<font color="red">*</font>:
                 <div class="input-group">
                     <textarea id="summernote" class="form-control" name="steps" placeholder="Step 1:" required>{{ trim(old('steps')) }}</textarea>
                 </div>
@@ -109,7 +109,7 @@
             </div>
 
             <div class="form-group">
-                Calories(kcal):
+                Calories(kcal)<font color="red">*</font>:
                 <div class="input-group">
                     <input class="form-control" type="number" step="any" min="0"  name="calories" value="{{ old('calories') }}" placeholder="kcal"/>
                 </div>
@@ -121,7 +121,7 @@
             </div>
 
             <div class="form-group">
-                Fat(%):
+                Fat(%)<font color="red">*</font>:
                 <div class="input-group">
                     <input class="form-control" type="number" step="any" min="0" max="100" name="fat" value="{{ old('fat') }}" placeholder=" 0-100 %"/>
                 </div>
@@ -133,7 +133,7 @@
             </div>
 
             <div class="form-group">
-                Carbohydrates(g):
+                Carbohydrates(g)<font color="red">*</font>:
                 <div class="input-group">
                     <input class="form-control" type="number" step="any" min="0" name="carbohydrate" value="{{ old('carbohydrate') }}" placeholder="g"/>
                 </div>
@@ -145,7 +145,7 @@
             </div>
 
             <div class="form-group">
-                Protein(%):
+                Protein(%)<font color="red">*</font>:
                 <div class="input-group">
                     <input class="form-control" type="number" step="any" min="0" max="100" name="protein" value="{{ old('protein') }}" placeholder=" 0-100 %"/>
                 </div>
@@ -157,7 +157,7 @@
             </div>
 
             <div class="form-group">
-                Sugar(g):
+                Sugar(g)<font color="red">*</font>:
                 <div class="input-group">
                     <input class="form-control" type="number" step="any" min="0" name="sugar" value="{{ old('sugar') }}"  placeholder="g"/>
                 </div>
