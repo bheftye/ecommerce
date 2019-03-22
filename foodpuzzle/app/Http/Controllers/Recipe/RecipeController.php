@@ -113,6 +113,21 @@ class RecipeController extends Controller
     }
 
     /**
+     * @param $uuid
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function delete($uuid)
+    {
+        $recipe = Recipe::where(['uuid' => $uuid])->first();
+        if (!empty($recipe) && $recipe->u_id === Auth::user()->id){
+            $recipe->delete();
+            return redirect()->back();
+        } else {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data

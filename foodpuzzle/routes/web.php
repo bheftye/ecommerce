@@ -81,6 +81,8 @@ Route::prefix('recipe')->group(function () {
     });
 
     Route::post('create', 'Recipe\RecipeController@create');
+
+    Route::get('delete/{uuid}', 'Recipe\RecipeController@delete')->middleware('verified');
 });
 
 Auth::routes(['verify' => true]);
