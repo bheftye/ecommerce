@@ -35,6 +35,11 @@ else{
             <i style="color:red" class="{{$isFavorite? "fas fa-heart" : "far fa-heart"}}"></i>
         </a>
         @endif
+        @if ($recipe->vegan)
+            <span class="leaf" title="Vegan Recipe!">
+                <i class="fas fa-leaf"></i>
+            </span>
+        @endif
         @if ($isOwner && $showConfiguration)
             <a href="/recipe/delete/{{$recipe->uuid}}" class="trash" title="Delete">
                 <i class="fas fa-trash-alt"></i>
@@ -53,11 +58,13 @@ else{
 
 <style>
     .card-body a.link{float: left;}
-    a.heart {display:block;color:red;background-color: #ffffff;border-radius: 50%;float: right;font-size:25px;position:absolute;right:-10px;top:-10px;height:40px;width:40px;}
-    a.heart i {margin-left:8px;margin-top:8px;}
+    a.heart {display:block;color:red;background-color: #ffffff;border-radius: 50%;float: right;font-size:18px;position:absolute;right:-7px;top:-7px;height:32px;width:32px;border:1px #eeeeee solid;}
+    a.heart i {margin-left:6px;margin-top:7px;}
     .card .card-img-top{max-height:200px !important;}
-    a.trash, a.edit{display:block;background-color:#ffffff;border-radius: 50%;font-size:18px;position:absolute;height:30px;width:30px;}
+    a.trash, a.edit, span.leaf{display:block;background-color:#ffffff;border-radius: 50%;font-size:18px;position:absolute;height:30px;width:30px;}
     a.trash{color:red;bottom:50px;right:5px;}
     a.edit{color:blue;bottom:50px;right:40px;}
     a.trash i, a.edit i{margin-left:7px;margin-top:5px;}
+    span.leaf{color:green;right:-7px;top:30px;}
+    span.leaf i{margin-left:5px;margin-top:5px;}
 </style>
