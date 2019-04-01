@@ -101,4 +101,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::auth();
 
-
+Route::get('/maps', function () {
+    return view('recipe.maps');
+});

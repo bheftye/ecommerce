@@ -27,6 +27,13 @@
   			background-position: center; 
 		}
 	</style>
+	<style>
+		/* Always set the map height explicitly to define the size of the div
+		* element that contains the map. */
+		#map {
+			height: 100%;
+		}
+    </style>
 
 </head>
 <body>
@@ -35,6 +42,12 @@
 	<div class="container-fluid" style="margin-top:50px">
 		@yield('content')
 	</div>
+	<!-- Google Map API -->
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYrNVfzwkBIu0ir5FsmiHygRZGejCiFuI&callback=initMap&libraries=places">
+	</script>
+
+	<script src="{{asset('js/mapscript.js')}}"></script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 </body>
