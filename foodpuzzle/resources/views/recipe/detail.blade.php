@@ -96,8 +96,12 @@ if (!empty($recipe->link)){
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-2 offset-10 mt-5 mb-5">                        
-                        <a class="btn btn-success btn-lg btn-block" href="/usermain" style="color:white">Back
+                    <div class="col-2 offset-8 mt-5 mb-5">                        
+                        <a class="btn btn-success btn-lg btn-block" href="/maps" style="color:white">Map
+                        </a>                        
+                    </div>
+                    <div class="col-2 mt-5 mb-5">                        
+                        <a class="btn btn-success btn-lg btn-block" href="{{ URL::previous() }}" style="color:white">Back
                         </a>                        
                     </div>
                 </div>
